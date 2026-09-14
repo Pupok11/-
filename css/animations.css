@@ -1,0 +1,289 @@
+/* ============================================
+   ANIMATIONS.CSS — Reveal, preloader, keyframes
+   ============================================ */
+
+/* ===== PRELOADER ===== */
+.preloader {
+    position: fixed;
+    inset: 0;
+    background: #0A0A0A;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.9s var(--ease), visibility 0.9s;
+}
+.preloader.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader__inner {
+    position: relative;
+    width: 400px;
+    height: 200px;
+}
+
+.preloader__svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+.preloader__svg path {
+    fill: none;
+    stroke: #FFFFFF;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 900;
+    stroke-dashoffset: 900;
+}
+
+.preloader__dot {
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    width: 8px;
+    height: 8px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    transform: scale(0);
+    box-shadow: 0 0 20px #FFFFFF;
+}
+
+.preloader__mini {
+    position: absolute;
+    bottom: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+}
+.preloader__mini canvas {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.preloader__percent {
+    position: absolute;
+    bottom: -160px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: #666666;
+}
+
+/* ===== REVEAL ===== */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+        opacity 1s var(--ease-out),
+        transform 1s var(--ease-out);
+    will-change: opacity, transform;
+}
+[data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger-эффект для групп */
+[data-reveal]:nth-child(1) { transition-delay: 0.05s; }
+[data-reveal]:nth-child(2) { transition-delay: 0.10s; }
+[data-reveal]:nth-child(3) { transition-delay: 0.15s; }
+[data-reveal]:nth-child(4) { transition-delay: 0.20s; }
+[data-reveal]:nth-child(5) { transition-delay: 0.25s; }
+[data-reveal]:nth-child(6) { transition-delay: 0.30s; }
+
+/* ===== HERO TITLE MASK REVEAL ===== */
+.hero__title .line {
+    display: block;
+    overflow: hidden;
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 1.2s var(--ease-out);
+}
+.hero__title .line.is-visible {
+    clip-path: inset(0 0 0 0);
+}
+
+/* ===== SCROLL INDICATOR ===== */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 60px;
+    background: var(--border-strong);
+    overflow: hidden;
+}
+.scroll-indicator::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 40%;
+    background: var(--gold);
+    animation: scrollDown 2s ease infinite;
+}
+@keyframes scrollDown {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(300%); }
+}
+
+/* ===== LOADING SPINNER ===== */
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== BUTTON LOADING ===== */
+.btn.is-loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+.btn.is-loading .arrow {
+    animation: spin 1s linear infinite;
+}
+
+/* ===== PULSE (для точки в прелоадере) ===== */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+/* ===== FADE IN ===== */
+.fade-in {
+    animation: fadeIn 0.8s var(--ease-out) forwards;
+    opacity: 0;
+}
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* ===== SLIDE UP ===== */
+.slide-up {
+    animation: slideUp 0.8s var(--ease-out) forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== HOVER LIFT для карточек ===== */
+.hover-lift {
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== MAGNETIC BUTTONS ===== */
+.btn {
+    will-change: transform;
+}
+
+/* ===== TEXT SCRAMBLE ===== */
+.scramble {
+    display: inline-block;
+    font-family: var(--font-mono);
+}
+
+/* ===== LINK UNDERLINE ANIMATION ===== */
+.link-underline {
+    position: relative;
+    text-decoration: none;
+}
+.link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.4s var(--ease);
+}
+.link-underline:hover::after {
+    width: 100%;
+}
+
+/* ===== PARALLAX ===== */
+.parallax-slow {
+    will-change: transform;
+}
+
+/* ===== CURSOR SCALE ON INTERACTIVE ===== */
+a:hover, button:hover, input:hover, textarea:hover, select:hover {
+    cursor: none;
+}
+
+/* ===== PAGE TRANSITIONS ===== */
+.page-transition {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 9997;
+    transform: translateY(100%);
+    pointer-events: none;
+}
+.page-transition.is-entering {
+    transform: translateY(0);
+    transition: transform 0.6s var(--ease);
+}
+.page-transition.is-leaving {
+    transform: translateY(-100%);
+    transition: transform 0.6s var(--ease);
+}
+
+/* ===== MARQUEE ===== */
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+.marquee {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 40s linear infinite;
+}
+.marquee span {
+    padding-right: 60px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--text-3);
+    text-transform: uppercase;
+}
+
+/* ===== RESPECT REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+    }
+}

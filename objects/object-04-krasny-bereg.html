@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЖК «Красный берег» — МОНОЛИТ</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/animations.css">
+<link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+<div class="cursor" id="cursor"><div class="cursor__dot"></div></div>
+<canvas class="cursor-canvas" id="cursor-canvas"></canvas>
+
+<header class="nav">
+    <a href="../index.html" class="nav__logo">МОНОЛИТ</a>
+    <nav class="nav__menu">
+        <a href="../index.html" class="nav__link">Главная</a>
+        <a href="../index.html#projects" class="nav__link">Проекты</a>
+        <a href="../technologies.html" class="nav__link">Технологии</a>
+        <a href="../about.html" class="nav__link">О нас</a>
+        <a href="../contacts.html" class="nav__link">Контакты</a>
+    </nav>
+    <a href="../contacts.html" class="nav__cta">Обсудить проект</a>
+</header>
+
+<main class="main">
+
+<section class="project-hero">
+    <div class="project-hero__left">
+        <p class="eyebrow" data-reveal>◆ ПРОЕКТ / <span data-fill="year">2025</span></p>
+        <h1 class="project-hero__title" data-reveal data-project-title>ЖК<br><em>«Красный берег»</em></h1>
+        <p class="project-hero__desc" data-reveal data-fill="long">Загрузка...</p>
+        <div class="project-hero__meta" data-reveal>
+            <div><span class="lbl">ПЛОЩАДЬ</span><span class="val" data-fill="area">—</span></div>
+            <div><span class="lbl">ЭТАЖНОСТЬ</span><span class="val" data-fill="floors">—</span></div>
+            <div><span class="lbl">ГОРОД</span><span class="val" data-fill="city">—</span></div>
+            <div><span class="lbl">СРОК</span><span class="val" data-fill="duration">—</span></div>
+        </div>
+    </div>
+    <div class="project-hero__right">
+        <div class="project-viewer" id="project-viewer"></div>
+    </div>
+</section>
+
+<section class="interiors">
+    <header class="section-head">
+        <p class="eyebrow" data-reveal>01 / ИНТЕРЬЕРЫ</p>
+        <h2 class="section-title" data-reveal>3D-сцены<br><em>объекта</em></h2>
+    </header>
+    <div class="interiors__grid">
+        <div class="interior" data-reveal>
+            <div class="interior__canvas" id="interior-kitchen"></div>
+            <div class="interior__info"><h4>Кухня-студия</h4><p>Премиум-гарнитур, остров, мраморная столешница.</p><span class="interior__tag">Вид А • Мрамор</span></div>
+        </div>
+        <div class="interior" data-reveal>
+            <div class="interior__canvas" id="interior-parking"></div>
+            <div class="interior__info"><h4>Подземный паркинг</h4><p>2 уровня, 500 машин, автомойка, шиномонтаж.</p><span class="interior__tag">Сечение • 2 уровня</span></div>
+        </div>
+        <div class="interior" data-reveal>
+            <div class="interior__canvas" id="interior-lobby"></div>
+            <div class="interior__info"><h4>Лобби с рестораном</h4><p>Ресторан на крыше, лаундж-зона, консьерж.</p><span class="interior__tag">Вид Б • Панорама</span></div>
+        </div>
+        <div class="interior" data-reveal>
+            <div class="interior__canvas" id="interior-courtyard"></div>
+            <div class="interior__info"><h4>Набережная</h4><p>Собственный выход к Неве, прогулочная зона.</p><span class="interior__tag">Вид В • Река</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="specs">
+    <header class="section-head">
+        <p class="eyebrow" data-reveal>02 / ТЕХНОЛОГИИ</p>
+        <h2 class="section-title" data-reveal>Инженерные<br><em>решения</em></h2>
+    </header>
+    <div class="specs__grid" data-project-specs></div>
+</section>
+
+<section class="timeline-section">
+    <header class="section-head">
+        <p class="eyebrow" data-reveal>03 / ТАЙМЛАЙН</p>
+        <h2 class="section-title" data-reveal>Хронология<br><em>стройки</em></h2>
+    </header>
+    <div class="timeline" data-project-timeline></div>
+</section>
+
+<section class="back-link">
+    <a href="../index.html" class="btn btn--ghost">← Все проекты</a>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="footer__row">
+        <div class="footer__logo">МОНОЛИТ</div>
+        <nav class="footer__nav">
+            <a href="../index.html">Главная</a>
+            <a href="../technologies.html">Технологии</a>
+            <a href="../about.html">О нас</a>
+            <a href="../contacts.html">Контакты</a>
+        </nav>
+        <div class="footer__copy">© 2026. ЖК «Красный берег»</div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.0.42/lenis.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/cursor.js"></script>
+<script src="../js/three-object.js"></script>
+<script src="../js/interiors.js"></script>
+<script src="../js/main.js"></script>
+
+<script>
+(function() {
+    const path = window.location.pathname;
+    const match = path.match(/object-(\d+)-/);
+    if (!match || !window.MONOLIT_DATA) return;
+
+    const idPrefix = `object-${match[1]}`;
+    const project = window.MONOLIT_DATA.projects.find(p => p.id.startsWith(idPrefix));
+    if (!project) return;
+
+    document.title = `${project.name} — МОНОЛИТ`;
+
+    const fill = (name, value) => {
+        document.querySelectorAll(`[data-fill="${name}"]`).forEach(el => el.textContent = value);
+    };
+
+    fill('year', project.year);
+    fill('long', project.long);
+    fill('area', project.area);
+    fill('floors', project.floors);
+    fill('city', project.city);
+    fill('duration', project.duration);
+
+    const titleEl = document.querySelector('[data-project-title]');
+    if (titleEl) {
+        const parts = project.name.split('«');
+        if (parts.length === 2) {
+            titleEl.innerHTML = `${parts[0]}<br><em>«${parts[1]}`;
+        } else {
+            titleEl.innerHTML = project.name;
+        }
+    }
+
+    const specsGrid = document.querySelector('[data-project-specs]');
+    if (specsGrid && project.specs) {
+        specsGrid.innerHTML = project.specs.map(spec => `
+            <div class="spec" data-reveal>
+                <span class="spec__num">${spec.num}</span>
+                <h4>${spec.title}</h4>
+                <p>${spec.text}</p>
+            </div>
+        `).join('');
+    }
+
+    const timelineEl = document.querySelector('[data-project-timeline]');
+    if (timelineEl && project.timeline) {
+        timelineEl.innerHTML = project.timeline.map(step => `
+            <div class="tl-step" data-reveal>
+                <span class="date">${step.date}</span>
+                <h4>${step.title}</h4>
+                <p>${step.text}</p>
+            </div>
+        `).join('');
+    }
+
+    const footerCopy = document.querySelector('.footer__copy');
+    if (footerCopy) footerCopy.textContent = `© 2026. ${project.name}`;
+})();
+</script>
+</body>
+</html>

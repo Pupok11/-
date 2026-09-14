@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Технологии — МОНОЛИТ</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+<style>
+/* ===== TECHNOLOGIES PAGE ===== */
+.tech-hero {
+    padding: 100px 60px 60px;
+    border-bottom: 1px solid var(--border);
+}
+.tech-hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 8vw, 130px);
+    font-weight: 300;
+    line-height: 0.95;
+    margin-bottom: 24px;
+}
+.tech-hero__title em {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--gold);
+}
+.tech-hero__desc {
+    font-size: 17px;
+    color: var(--text-2);
+    max-width: 620px;
+    line-height: 1.7;
+}
+
+/* WALL CROSS-SECTION */
+.wall-section {
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--border);
+}
+.wall-section h2 {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 300;
+    margin-bottom: 40px;
+}
+.wall-section h2 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold);
+}
+.wall {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+.wall__svg {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    padding: 40px;
+    position: relative;
+}
+.wall__svg svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.wall__layer {
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+}
+.wall__layer rect {
+    transition: all 0.3s var(--ease);
+}
+.wall__layer:hover rect {
+    filter: brightness(0.92);
+}
+.wall__layer.is-active rect {
+    stroke: var(--gold);
+    stroke-width: 2;
+}
+.wall__info {
+    position: relative;
+    min-height: 300px;
+}
+.wall__card {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s var(--ease);
+    transform: translateY(20px);
+}
+.wall__card.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.wall__card__num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 16px;
+}
+.wall__card h3 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+.wall__card p {
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+.wall__card__specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+.wall__card__specs > div span {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--text-3);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+.wall__card__specs > div b {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text);
+}
+
+/* SPECS GRID */
+.tech-specs {
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--border);
+}
+.tech-specs__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 40px;
+}
+.tech-spec {
+    background: var(--bg);
+    padding: 40px 30px;
+    transition: background 0.4s;
+}
+.tech-spec:hover {
+    background: var(--bg-soft);
+}
+.tech-spec__icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 24px;
+    color: var(--gold);
+}
+.tech-spec h4 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+.tech-spec p {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"><div class="cursor__dot"></div></div>
+<canvas class="cursor-canvas" id="cursor-canvas"></canvas>
+
+<header class="nav">
+    <a href="index.html" class="nav__logo">МОНОЛИТ</a>
+    <nav class="nav__menu">
+        <a href="index.html" class="nav__link">Главная</a>
+        <a href="index.html#projects" class="nav__link">Проекты</a>
+        <a href="technologies.html" class="nav__link is-active">Технологии</a>
+        <a href="about.html" class="nav__link">О нас</a>
+        <a href="contacts.html" class="nav__link">Контакты</a>
+    </nav>
+    <a href="contacts.html" class="nav__cta">Обсудить проект</a>
+</header>
+
+<main class="main">
+
+<section class="tech-hero">
+    <p class="eyebrow" data-reveal>◆ ТЕХНОЛОГИИ</p>
+    <h1 class="tech-hero__title" data-reveal>Инженерные<br><em>решения</em></h1>
+    <p class="tech-hero__desc" data-reveal>Каждый узел просчитан в BIM, каждая марка бетона испытана в лаборатории, каждый слой фасада сертифицирован. Кликните по слою на схеме, чтобы увидеть характеристики.</p>
+</section>
+
+<!-- WALL CROSS-SECTION -->
+<section class="wall-section">
+    <h2 data-reveal>Разрез стены<br><em>ЖК «Северный»</em></h2>
+
+    <div class="wall">
+        <div class="wall__svg">
+            <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+                <!-- Layer 1: Interior finish -->
+                <g class="wall__layer" data-layer="1">
+                    <rect x="20" y="20" width="60" height="280" fill="#F5F3EF" stroke="#D4D0C8" stroke-width="1"/>
+                    <text x="50" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#999" transform="rotate(-90 50 160)">ОТДЕЛКА</text>
+                </g>
+
+                <!-- Layer 2: Concrete -->
+                <g class="wall__layer" data-layer="2">
+                    <rect x="80" y="20" width="140" height="280" fill="#D4D0C8" stroke="#B8B0A0" stroke-width="1"/>
+                    <text x="150" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#666" transform="rotate(-90 150 160)">МОНОЛИТ B35</text>
+                    <!-- Rebar pattern -->
+                    <line x1="95" y1="20" x2="95" y2="300" stroke="#999" stroke-width="0.5" stroke-dasharray="4 4"/>
+                    <line x1="120" y1="20" x2="120" y2="300" stroke="#999" stroke-width="0.5" stroke-dasharray="4 4"/>
+                    <line x1="180" y1="20" x2="180" y2="300" stroke="#999" stroke-width="0.5" stroke-dasharray="4 4"/>
+                    <line x1="205" y1="20" x2="205" y2="300" stroke="#999" stroke-width="0.5" stroke-dasharray="4 4"/>
+                </g>
+
+                <!-- Layer 3: Insulation -->
+                <g class="wall__layer" data-layer="3">
+                    <rect x="220" y="20" width="80" height="280" fill="#F0EDE6" stroke="#C7A06F" stroke-width="1" stroke-dasharray="4 2"/>
+                    <text x="260" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#C7A06F" transform="rotate(-90 260 160)">УТЕПЛИТЕЛЬ</text>
+                </g>
+
+                <!-- Layer 4: Ventilated gap -->
+                <g class="wall__layer" data-layer="4">
+                    <rect x="300" y="20" width="30" height="280" fill="#FFFFFF" stroke="#D4D0C8" stroke-width="1"/>
+                    <text x="315" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#999" transform="rotate(-90 315 160)">ЗАЗОР</text>
+                </g>
+
+                <!-- Layer 5: Facade -->
+                <g class="wall__layer" data-layer="5">
+                    <rect x="330" y="20" width="50" height="280" fill="#E8E5DF" stroke="#B8B0A0" stroke-width="1"/>
+                    <text x="355" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#666" transform="rotate(-90 355 160)">ФАСАД</text>
+                </g>
+
+                <!-- Dimensions -->
+                <g font-family="JetBrains Mono" font-size="9" fill="#999">
+                    <line x1="20" y1="310" x2="380" y2="310" stroke="#D4D0C8"/>
+                    <text x="200" y="325" text-anchor="middle">ТОЛЩИНА СТЕНЫ 400 ММ</text>
+                </g>
+            </svg>
+        </div>
+
+        <div class="wall__info">
+            <!-- Layer 1 -->
+            <div class="wall__card" data-card="1">
+                <span class="wall__card__num">01 / ОТДЕЛКА</span>
+                <h3>Внутренняя отделка</h3>
+                <p>Декоративная штукатурка Knauf Rotband. Финишная покраска Tikkurila. Выравнивание под уровень перепада не более 2 мм на 2 м.</p>
+                <div class="wall__card__specs">
+                    <div><span>Толщина</span><b>15 мм</b></div>
+                    <div><span>Производитель</span><b>Knauf</b></div>
+                </div>
+            </div>
+
+            <!-- Layer 2 -->
+            <div class="wall__card" data-card="2">
+                <span class="wall__card__num">02 / НЕСУЩИЙ СЛОЙ</span>
+                <h3>Монолитный железобетон</h3>
+                <p>Марка бетона B35 W12 F300 — повышенная водонепроницаемость и морозостойкость. Армирование A500C, толщина защитного слоя 25 мм.</p>
+                <div class="wall__card__specs">
+                    <div><span>Толщина</span><b>200 мм</b></div>
+                    <div><span>Марка</span><b>B35 W12 F300</b></div>
+                    <div><span>Класс арматуры</span><b>A500C</b></div>
+                    <div><span>Прочность</span><b>35 МПа</b></div>
+                </div>
+            </div>
+
+            <!-- Layer 3 -->
+            <div class="wall__card" data-card="3">
+                <span class="wall__card__num">03 / ТЕПЛОИЗОЛЯЦИЯ</span>
+                <h3>Минеральная вата</h3>
+                <p>Rockwool Венти Баттс. Плотность 90 кг/м³. Теплопроводность λ = 0.037 Вт/(м·К). Негорючий материал класса НГ.</p>
+                <div class="wall__card__specs">
+                    <div><span>Толщина</span><b>150 мм</b></div>
+                    <div><span>Плотность</span><b>90 кг/м³</b></div>
+                    <div><span>λ</span><b>0.037 Вт/(м·К)</b></div>
+                    <div><span>Производитель</span><b>Rockwool</b></div>
+                </div>
+            </div>
+
+            <!-- Layer 4 -->
+            <div class="wall__card" data-card="4">
+                <span class="wall__card__num">04 / ВЕНТЗАЗОР</span>
+                <h3>Вентилируемый зазор</h3>
+                <p>Воздушная прослойка для отвода влаги и вентиляции утеплителя. Обеспечивает циркуляцию воздуха между утеплителем и фасадом.</p>
+                <div class="wall__card__specs">
+                    <div><span>Толщина</span><b>40 мм</b></div>
+                    <div><span>Тип</span><b>Вентилируемый</b></div>
+                </div>
+            </div>
+
+            <!-- Layer 5 -->
+            <div class="wall__card" data-card="5">
+                <span class="wall__card__num">05 / ФАСАД</span>
+                <h3>Керамогранит</h3>
+                <p>Крупноформатный керамогранит 1200×600 мм, толщина 10 мм. Морозостойкость F150. Крепление на скрытую систему Kerfix.</p>
+                <div class="wall__card__specs">
+                    <div><span>Формат</span><b>1200×600 мм</b></div>
+                    <div><span>Толщина</span><b>10 мм</b></div>
+                    <div><span>Морозостойкость</span><b>F150</b></div>
+                    <div><span>Крепление</span><b>Kerfix</b></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TECH SPECS GRID -->
+<section class="tech-specs">
+    <h2 class="section-title" data-reveal>Ключевые<br><em>технологии</em></h2>
+
+    <div class="tech-specs__grid">
+        <div class="tech-spec" data-reveal>
+            <svg class="tech-spec__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                <rect x="8" y="8" width="32" height="32"/>
+                <path d="M8 24H40M24 8V40"/>
+            </svg>
+            <h4>BIM-моделирование</h4>
+            <p>Все объекты проектируются в LOD 400. Цифровая модель включает каждый узел: от фундамента до кровли.</p>
+        </div>
+
+        <div class="tech-spec" data-reveal>
+            <svg class="tech-spec__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M24 4L4 44H44L24 4Z"/>
+                <path d="M16 32H32"/>
+            </svg>
+            <h4>Лаборатория бетона</h4>
+            <p>Собственная лаборатория испытывает каждую партию бетона на прочность, водонепроницаемость и морозостойкость.</p>
+        </div>
+
+        <div class="tech-spec" data-reveal>
+            <svg class="tech-spec__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                <circle cx="24" cy="24" r="18"/>
+                <path d="M24 6V24L36 36"/>
+            </svg>
+            <h4>Умный дом</h4>
+            <p>Системы климат-контроля, освещения и безопасности с управлением через мобильное приложение.</p>
+        </div>
+
+        <div class="tech-spec" data-reveal>
+            <svg class="tech-spec__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M4 40H44M8 40V16L24 4L40 16V40"/>
+            </svg>
+            <h4>Энергоэффективность</h4>
+            <p>Класс А++ с рекуперацией тепла 85%. Ежегодное снижение затрат на отопление до 40%.</p>
+        </div>
+
+        <div class="tech-spec" data-reveal>
+            <svg class="tech-spec__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                <circle cx="16" cy="24" r="8"/>
+                <circle cx="32" cy="24" r="8"/>
+            </svg>
+            <h4>Скрытые коммуникации</h4>
+            <p>Все инженерные сети прокладываются в специальных шахтах и коллекторах с доступом для обслуживания.</p>
+        </div>
+
+        <div class="tech-spec" data-reveal>
+            <svg class="tech-spec__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M12 12L24 4L36 12L36 36L24 44L12 36Z"/>
+                <path d="M24 4V44M12 12L36 36M36 12L12 36"/>
+            </svg>
+            <h4>Сейсмостойкость</h4>
+            <p>Расчёт на сейсмические нагрузки до 7 баллов включительно. Усиленные узлы крепления.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2 class="cta__title" data-reveal>Хотите узнать<br><em>подробнее?</em></h2>
+    <p data-reveal>Получите техническую документацию по нашему объекту.</p>
+    <a href="contacts.html" class="btn btn--primary" data-reveal>Запросить документацию <span class="arrow">→</span></a>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="footer__row">
+        <div class="footer__logo">МОНОЛИТ</div>
+        <nav class="footer__nav">
+            <a href="index.html">Главная</a>
+            <a href="technologies.html">Технологии</a>
+            <a href="about.html">О нас</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+        <div class="footer__copy">© 2026. ИНН 7801234567</div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.0.42/lenis.min.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+// Wall layer interaction
+document.querySelectorAll('.wall__layer').forEach(layer => {
+    layer.addEventListener('click', () => {
+        const layerNum = layer.dataset.layer;
+        
+        document.querySelectorAll('.wall__layer').forEach(l => l.classList.remove('is-active'));
+        layer.classList.add('is-active');
+
+        document.querySelectorAll('.wall__card').forEach(c => c.classList.remove('is-active'));
+        const card = document.querySelector(`.wall__card[data-card="${layerNum}"]`);
+        if (card) card.classList.add('is-active');
+    });
+});
+
+// Auto-activate first layer
+setTimeout(() => {
+    const firstLayer = document.querySelector('.wall__layer[data-layer="2"]');
+    if (firstLayer) firstLayer.click();
+}, 500);
+</script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>МОНОЛИТ — Полный цикл капитального строительства</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader">
+    <div class="preloader__inner">
+        <div class="preloader__dot"></div>
+        <svg class="preloader__svg" viewBox="0 0 400 200">
+            <path d="M 40 160 L 40 40 L 100 120 L 160 40 L 160 160 M 160 160 L 160 40 L 220 120 L 280 40 L 280 160 M 280 160 L 280 40 L 340 120 L 360 100" />
+        </svg>
+        <div class="preloader__mini" id="preloader-mini"></div>
+        <div class="preloader__percent" id="preloader-percent">0%</div>
+    </div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"><div class="cursor__dot"></div></div>
+<canvas class="cursor-canvas" id="cursor-canvas"></canvas>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+    <a href="index.html" class="nav__logo" data-barba-prevent>МОНОЛИТ</a>
+    <nav class="nav__menu">
+        <a href="index.html" class="nav__link is-active" data-barba-prevent>Главная</a>
+        <a href="index.html#projects" class="nav__link">Проекты</a>
+        <a href="technologies.html" class="nav__link" data-barba-prevent>Технологии</a>
+        <a href="about.html" class="nav__link" data-barba-prevent>О нас</a>
+        <a href="contacts.html" class="nav__link" data-barba-prevent>Контакты</a>
+    </nav>
+    <a href="contacts.html" class="nav__cta" data-barba-prevent>Обсудить проект</a>
+</header>
+
+<main class="main" id="main" data-barba="wrapper">
+
+<div data-barba="container" data-barba-namespace="home">
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero__left">
+        <p class="eyebrow" data-reveal>◆ САНКТ-ПЕТЕРБУРГ ◆ С 2008 ГОДА</p>
+        <h1 class="hero__title">
+            <span class="line" data-reveal>МОНО</span>
+            <span class="line line--italic" data-reveal>ЛИТ</span>
+        </h1>
+        <p class="hero__desc" data-reveal>Полный цикл капитального строительства. BIM-проектирование и реализация сложных инженерных узлов. Монолит B35, кортен, оружейная сталь.</p>
+        <div class="hero__cta" data-reveal>
+            <a href="#projects" class="btn btn--primary">Смотреть проекты <span class="arrow">→</span></a>
+            <a href="contacts.html" class="btn btn--ghost" data-barba-prevent>Связаться</a>
+        </div>
+        <div class="hero__stats" data-reveal>
+            <div><span class="num" data-count="18">0</span><span class="lbl">лет опыта</span></div>
+            <div><span class="num" data-count="450">0</span><span class="lbl">объектов</span></div>
+            <div><span class="num" data-count="120">0</span><span class="lbl">инженеров</span></div>
+        </div>
+    </div>
+    <div class="hero__right">
+        <div class="carousel-3d" id="carousel-3d"></div>
+        <div class="carousel-nav">
+            <button class="carousel-btn" id="carousel-prev">←</button>
+            <div class="carousel-dots" id="carousel-dots"></div>
+            <button class="carousel-btn" id="carousel-next">→</button>
+        </div>
+        <div class="carousel-label">
+            <span class="carousel-label__tag" id="carousel-tag">ЖИЛОЙ КОМПЛЕКС</span>
+            <h3 id="carousel-name">ЖК «Северный»</h3>
+        </div>
+    </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics">
+    <div class="metrics__grid">
+        <div class="metric-card" data-reveal>
+            <div class="metric-card__icon" id="metric-icon-1"></div>
+            <h3>Сроки</h3>
+            <p>97% объектов сдано в срок или раньше</p>
+            <div class="metric-card__val"><span data-count="97">0</span>%</div>
+        </div>
+        <div class="metric-card" data-reveal>
+            <div class="metric-card__icon" id="metric-icon-2"></div>
+            <h3>Бюджет</h3>
+            <p>0.4% среднее превышение сметы</p>
+            <div class="metric-card__val">0.<span data-count="4">0</span>%</div>
+        </div>
+        <div class="metric-card" data-reveal>
+            <div class="metric-card__icon" id="metric-icon-3"></div>
+            <h3>Качество</h3>
+            <p>99.6% приёмок без замечаний</p>
+            <div class="metric-card__val"><span data-count="99">0</span>%</div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+    <header class="section-head">
+        <p class="eyebrow" data-reveal>01 / УСЛУГИ</p>
+        <h2 class="section-title" data-reveal>Инженерия<br><em>полного цикла</em></h2>
+    </header>
+    <div class="services__grid">
+        <article class="service" data-reveal>
+            <span class="service__num">01</span>
+            <h3>Генподряд</h3>
+            <p>Полный цикл: геология, BIM-проект, монолит, инженерия, отделка.</p>
+            <span class="service__price">от 25 000 ₽/м²</span>
+        </article>
+        <article class="service" data-reveal>
+            <span class="service__num">02</span>
+            <h3>BIM-проектирование</h3>
+            <p>Цифровая модель LOD 400, согласование, авторский надзор.</p>
+            <span class="service__price">от 1 500 ₽/м²</span>
+        </article>
+        <article class="service" data-reveal>
+            <span class="service__num">03</span>
+            <h3>Промышленность</h3>
+            <p>Заводы, склады, цеха. Металлокаркас, сэндвич-панели.</p>
+            <span class="service__price">от 30 000 ₽/м²</span>
+        </article>
+        <article class="service" data-reveal>
+            <span class="service__num">04</span>
+            <h3>Ремонт квартир</h3>
+            <p>Косметика, капитальный, дизайнерский. По вашему проекту.</p>
+            <span class="service__price">от 8 000 ₽/м²</span>
+        </article>
+        <article class="service" data-reveal>
+            <span class="service__num">05</span>
+            <h3>Кровельные системы</h3>
+            <p>Мембранные, фальцевые, скатные. Гарантия 5 лет.</p>
+            <span class="service__price">от 3 500 ₽/м²</span>
+        </article>
+        <article class="service" data-reveal>
+            <span class="service__num">06</span>
+            <h3>Отделка</h3>
+            <p>Декоративные штукатурки, плитка, камень, фасадные системы.</p>
+            <span class="service__price">от 2 500 ₽/м²</span>
+        </article>
+    </div>
+</section>
+
+<!-- PROJECTS — генерируется из data.js -->
+<section class="projects" id="projects">
+    <header class="section-head">
+        <p class="eyebrow" data-reveal>02 / ПРОЕКТЫ</p>
+        <h2 class="section-title" data-reveal>Построено<br><em>в бетоне и стали</em></h2>
+    </header>
+    <div class="projects__grid" id="projects-grid">
+        <!-- JS заполнит этот блок -->
+    </div>
+</section>
+
+<!-- BOTTOM TABS — генерируется из data.js -->
+<section class="tabs" id="tabs">
+    <!-- JS заполнит -->
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2 class="cta__title" data-reveal>Готовы построить<br><em>что-то серьёзное?</em></h2>
+    <p data-reveal>Оставьте заявку — свяжемся за 15 минут.</p>
+    <a href="contacts.html" class="btn btn--primary" data-reveal data-barba-prevent>Оставить заявку <span class="arrow">→</span></a>
+</section>
+
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer__row">
+        <div class="footer__logo">МОНОЛИТ</div>
+        <nav class="footer__nav">
+            <a href="index.html" data-barba-prevent>Главная</a>
+            <a href="technologies.html" data-barba-prevent>Технологии</a>
+            <a href="about.html" data-barba-prevent>О нас</a>
+            <a href="contacts.html" data-barba-prevent>Контакты</a>
+        </nav>
+        <div class="footer__copy">© 2026. ИНН 7801234567</div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.0.42/lenis.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/preloader.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/three-home.js"></script>
+<script src="js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/barba.js/2.9.7/barba.umd.min.js"></script>
+</body>
+</html>

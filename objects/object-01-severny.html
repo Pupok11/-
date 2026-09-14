@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЖК «Северный» — МОНОЛИТ</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/animations.css">
+<link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+<div class="cursor" id="cursor"><div class="cursor__dot"></div></div>
+<canvas class="cursor-canvas" id="cursor-canvas"></canvas>
+
+<header class="nav">
+    <a href="../index.html" class="nav__logo" data-barba-prevent>МОНОЛИТ</a>
+    <nav class="nav__menu">
+        <a href="../index.html" class="nav__link" data-barba-prevent>Главная</a>
+        <a href="../index.html#projects" class="nav__link" data-barba-prevent>Проекты</a>
+        <a href="../technologies.html" class="nav__link" data-barba-prevent>Технологии</a>
+        <a href="../about.html" class="nav__link" data-barba-prevent>О нас</a>
+        <a href="../contacts.html" class="nav__link" data-barba-prevent>Контакты</a>
+    </nav>
+    <a href="../contacts.html" class="nav__cta" data-barba-prevent>Обсудить проект</a>
+</header>
+
+<main class="main" id="main">
+
+<!-- PROJECT HERO -->
+<section class="project-hero">
+    <div class="project-hero__left">
+        <p class="eyebrow" data-reveal>◆ ПРОЕКТ / 2024</p>
+        <h1 class="project-hero__title" data-reveal>ЖК<br><em>«Северный»</em></h1>
+        <p class="project-hero__desc" data-reveal>12 корпусов монолита. 45 000 м² жилой площади. Приморский район Санкт-Петербурга, 800 м от Финского залива.</p>
+        <div class="project-hero__meta" data-reveal>
+            <div><span class="lbl">ПЛОЩАДЬ</span><span class="val">45 000 м²</span></div>
+            <div><span class="lbl">КОРПУСОВ</span><span class="val">12</span></div>
+            <div><span class="lbl">ЭТАЖНОСТЬ</span><span class="val">12–18</span></div>
+            <div><span class="lbl">СРОК</span><span class="val">3 года</span></div>
+        </div>
+    </div>
+    <div class="project-hero__right">
+        <div class="project-viewer" id="project-viewer"></div>
+    </div>
+</section>
+
+<!-- INTERIOR GALLERY -->
+<section class="interiors">
+    <header class="section-head">
+        <p class="eyebrow" data-reveal>01 / ИНТЕРЬЕРЫ</p>
+        <h2 class="section-title" data-reveal>3D-сцены<br><em>объекта</em></h2>
+    </header>
+    <div class="interiors__grid">
+        <div class="interior" data-reveal>
+            <div class="interior__canvas" id="interior-kitchen"></div>
+            <div class="interior__info">
+                <h4>Кухня-студия</h4>
+                <p>Гарнитур с рабочей подсветкой, остров, кварцевая столешница.</p>
+                <span class="interior__tag">Вид А • Кварц</span>
+            </div>
+        </div>
+        <div class="interior" data-reveal>
+            <div class="interior__canvas" id="interior-parking"></div>
+            <div class="interior__info">
+                <h4>Подземный паркинг</h4>
+                <p>Два уровня, 350 машин, зарядки для электромобилей.</p>
+                <span class="interior__tag">Сечение • 2 уровня</span>
+            </div>
+        </div>
+        <div class="interior" data-reveal>
+            <div class="interior__canvas" id="interior-lobby"></div>
+            <div class="interior__info">
+                <h4>Лобби и ресепшн</h4>
+                <p>Стойка из кортена, декоративные растения, мрамор.</p>
+                <span class="interior__tag">Вид Б • Мрамор</span>
+            </div>
+        </div>
+        <div class="interior" data-reveal>
+            <div class="interior__canvas" id="interior-courtyard"></div>
+            <div class="interior__info">
+                <h4>Двор</h4>
+                <p>Детская площадка, воркаут, газон 40% территории.</p>
+                <span class="interior__tag">Вид В • Газон</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SPECS -->
+<section class="specs">
+    <header class="section-head">
+        <p class="eyebrow" data-reveal>02 / ТЕХНОЛОГИИ</p>
+        <h2 class="section-title" data-reveal>Инженерные<br><em>решения</em></h2>
+    </header>
+    <div class="specs__grid">
+        <div class="spec" data-reveal><span class="spec__num">01</span><h4>Каркас</h4><p>Монолитный железобетон B35 W12 F300. Армирование A500C. Толщина стен 200–400 мм.</p></div>
+        <div class="spec" data-reveal><span class="spec__num">02</span><h4>Остекление</h4><p>Профиль Schüco, двухкамерный стеклопакет 44 мм. R = 0.87 м²·°C/Вт.</p></div>
+        <div class="spec" data-reveal><span class="spec__num">03</span><h4>Энергоэффективность</h4><p>Класс А++. Утепление минеральной ватой 150 мм, рекуперация тепла.</p></div>
+        <div class="spec" data-reveal><span class="spec__num">04</span><h4>Инженерия</h4><p>Своя котельная, ИТП, VAV-вентиляция, умные счётчики.</p></div>
+        <div class="spec" data-reveal><span class="spec__num">05</span><h4>Паркинг</h4><p>Подземный на 350 машин. Зарядки для электромобилей, LED-освещение.</p></div>
+        <div class="spec" data-reveal><span class="spec__num">06</span><h4>Благоустройство</h4><p>Детский сад, спортивные площадки, озеленение 40%.</p></div>
+    </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+    <header class="section-head">
+        <p class="eyebrow" data-reveal>03 / ТАЙМЛАЙН</p>
+        <h2 class="section-title" data-reveal>Хронология<br><em>стройки</em></h2>
+    </header>
+    <div class="timeline">
+        <div class="tl-step" data-reveal><span class="date">Q1 2021</span><h4>Геология и проект</h4><p>Бурение 24 скважин, BIM-модель LOD 400.</p></div>
+        <div class="tl-step" data-reveal><span class="date">Q3 2021</span><h4>Котлован</h4><p>Выемка 180 000 м³ грунта, свайное поле 1 200 свай.</p></div>
+        <div class="tl-step" data-reveal><span class="date">Q2 2022</span><h4>Монолит</h4><p>Заливка 45 000 м³ бетона B35, 12 этажей.</p></div>
+        <div class="tl-step" data-reveal><span class="date">Q1 2023</span><h4>Фасады</h4><p>Керамогранит, мембранная кровля, окна Schüco.</p></div>
+        <div class="tl-step" data-reveal><span class="date">Q4 2024</span><h4>Сдача</h4><p>Благоустройство, госкомиссия, передача ключей.</p></div>
+    </div>
+</section>
+
+<section class="back-link">
+    <a href="../index.html" class="btn btn--ghost" data-barba-prevent>← Все проекты</a>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="footer__row">
+        <div class="footer__logo">МОНОЛИТ</div>
+        <nav class="footer__nav">
+            <a href="../index.html" data-barba-prevent>Главная</a>
+            <a href="../technologies.html" data-barba-prevent>Технологии</a>
+            <a href="../about.html" data-barba-prevent>О нас</a>
+            <a href="../contacts.html" data-barba-prevent>Контакты</a>
+        </nav>
+        <div class="footer__copy">© 2026. ЖК «Северный»</div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.0.42/lenis.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/cursor.js"></script>
+<script src="../js/three-object.js"></script>
+<script src="../js/interiors.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
