@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Логотип ТЕХНОПРЕСТИЖ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        background: #F0EDE6;
+        font-family: 'Inter', sans-serif;
+        padding: 60px 40px;
+        min-height: 100vh;
+    }
+
+    h1 {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #999;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .logo-box {
+        background: #FFFFFF;
+        padding: 60px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 280px;
+        position: relative;
+    }
+
+    .logo-box--dark {
+        background: #0A0A0A;
+    }
+
+    .logo-box__label {
+        position: absolute;
+        top: 16px;
+        left: 20px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        color: #999;
+        text-transform: uppercase;
+    }
+
+    .logo-box--dark .logo-box__label {
+        color: #555;
+    }
+
+    /* ============ ВАРИАНТ 1 — Квадрат с буквой Т ============ */
+    .logo-v1 {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+    .logo-v1__mark {
+        width: 80px;
+        height: 80px;
+        background: #0A0A0A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    .logo-v1__mark::after {
+        content: '';
+        position: absolute;
+        inset: 8px;
+        border: 1px solid #C7A06F;
+    }
+    .logo-v1__letter {
+        font-family: 'Crimson Pro', serif;
+        font-size: 52px;
+        font-weight: 700;
+        color: #C7A06F;
+        line-height: 1;
+        position: relative;
+        z-index: 2;
+        margin-top: -4px;
+    }
+    .logo-v1__text {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .logo-v1__name {
+        font-family: 'Crimson Pro', serif;
+        font-size: 34px;
+        font-weight: 600;
+        color: #0A0A0A;
+        letter-spacing: 0.08em;
+        line-height: 1;
+    }
+    .logo-v1__tag {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        letter-spacing: 0.4em;
+        color: #C7A06F;
+        text-transform: uppercase;
+    }
+    .logo-box--dark .logo-v1__name { color: #EDE9E3; }
+
+    /* ============ ВАРИАНТ 2 — Монограмма ТП ============ */
+    .logo-v2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .logo-v2__mark {
+        width: 100px;
+        height: 100px;
+        border: 2px solid #0A0A0A;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    .logo-v2__mark::before {
+        content: '';
+        position: absolute;
+        inset: 6px;
+        border: 1px solid #C7A06F;
+        border-radius: 50%;
+    }
+    .logo-v2__letters {
+        font-family: 'Crimson Pro', serif;
+        font-size: 46px;
+        font-weight: 600;
+        font-style: italic;
+        color: #0A0A0A;
+        line-height: 1;
+        letter-spacing: -0.05em;
+        margin-top: -4px;
+        position: relative;
+        z-index: 2;
+    }
+    .logo-v2__name {
+        font-family: 'Crimson Pro', serif;
+        font-size: 26px;
+        font-weight: 400;
+        color: #0A0A0A;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+    }
+    .logo-box--dark .logo-v2__mark { border-color: #EDE9E3; }
+    .logo-box--dark .logo-v2__letters,
+    .logo-box--dark .logo-v2__name { color: #EDE9E3; }
+
+    /* ============ ВАРИАНТ 3 — Типографический ============ */
+    .logo-v3 {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    .logo-v3__line {
+        width: 60px;
+        height: 1px;
+        background: #C7A06F;
+        margin-bottom: 8px;
+    }
+    .logo-v3__name {
+        font-family: 'Crimson Pro', serif;
+        font-size: 44px;
+        font-weight: 300;
+        color: #0A0A0A;
+        letter-spacing: 0.06em;
+        line-height: 1;
+    }
+    .logo-v3__name em {
+        font-style: italic;
+        font-weight: 600;
+        color: #C7A06F;
+    }
+    .logo-v3__sub {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9px;
+        letter-spacing: 0.5em;
+        color: #666;
+        text-transform: uppercase;
+        margin-top: 4px;
+    }
+    .logo-box--dark .logo-v3__name { color: #EDE9E3; }
+    .logo-box--dark .logo-v3__sub { color: #888; }
+
+    /* ============ ВАРИАНТ 4 — Печать / герб ============ */
+    .logo-v4 {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .logo-v4__mark {
+        width: 72px;
+        height: 90px;
+        background: #0A0A0A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        clip-path: polygon(0 0, 100% 0, 100% 78%, 50% 100%, 0 78%);
+    }
+    .logo-v4__letter {
+        font-family: 'Crimson Pro', serif;
+        font-size: 46px;
+        font-weight: 700;
+        color: #C7A06F;
+        line-height: 1;
+        margin-bottom: 14px;
+    }
+    .logo-v4__text {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .logo-v4__name {
+        font-family: 'Crimson Pro', serif;
+        font-size: 30px;
+        font-weight: 600;
+        color: #0A0A0A;
+        letter-spacing: 0.05em;
+        line-height: 1;
+    }
+    .logo-v4__tag {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9px;
+        letter-spacing: 0.35em;
+        color: #666;
+        text-transform: uppercase;
+    }
+    .logo-box--dark .logo-v4__name { color: #EDE9E3; }
+    .logo-box--dark .logo-v4__tag { color: #888; }
+
+    @media (max-width: 800px) {
+        .grid { grid-template-columns: 1fr; }
+    }
+</style>
+</head>
+<body>
+
+<h1>◆ Выбери один вариант ◆</h1>
+
+<div class="grid">
+
+    <!-- ВАРИАНТ 1 -->
+    <div class="logo-box">
+        <span class="logo-box__label">Вариант 01</span>
+        <div class="logo-v1">
+            <div class="logo-v1__mark">
+                <span class="logo-v1__letter">Т</span>
+            </div>
+            <div class="logo-v1__text">
+                <span class="logo-v1__name">ТЕХНОПРЕСТИЖ</span>
+                <span class="logo-v1__tag">Бытовая техника</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ВАРИАНТ 1 — тёмный -->
+    <div class="logo-box logo-box--dark">
+        <span class="logo-box__label">Вариант 01 · dark</span>
+        <div class="logo-v1">
+            <div class="logo-v1__mark">
+                <span class="logo-v1__letter">Т</span>
+            </div>
+            <div class="logo-v1__text">
+                <span class="logo-v1__name">ТЕХНОПРЕСТИЖ</span>
+                <span class="logo-v1__tag">Бытовая техника</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ВАРИАНТ 2 -->
+    <div class="logo-box">
+        <span class="logo-box__label">Вариант 02</span>
+        <div class="logo-v2">
+            <div class="logo-v2__mark">
+                <span class="logo-v2__letters">ТП</span>
+            </div>
+            <span class="logo-v2__name">ТехноПрестиж</span>
+        </div>
+    </div>
+
+    <!-- ВАРИАНТ 2 — тёмный -->
+    <div class="logo-box logo-box--dark">
+        <span class="logo-box__label">Вариант 02 · dark</span>
+        <div class="logo-v2">
+            <div class="logo-v2__mark">
+                <span class="logo-v2__letters">ТП</span>
+            </div>
+            <span class="logo-v2__name">ТехноПрестиж</span>
+        </div>
+    </div>
+
+    <!-- ВАРИАНТ 3 -->
+    <div class="logo-box">
+        <span class="logo-box__label">Вариант 03</span>
+        <div class="logo-v3">
+            <div class="logo-v3__line"></div>
+            <span class="logo-v3__name">Техно<em>Престиж</em></span>
+            <span class="logo-v3__sub">Бытовая техника · с 2012</span>
+        </div>
+    </div>
+
+    <!-- ВАРИАНТ 3 — тёмный -->
+    <div class="logo-box logo-box--dark">
+        <span class="logo-box__label">Вариант 03 · dark</span>
+        <div class="logo-v3">
+            <div class="logo-v3__line"></div>
+            <span class="logo-v3__name">Техно<em>Престиж</em></span>
+            <span class="logo-v3__sub">Бытовая техника · с 2012</span>
+        </div>
+    </div>
+
+    <!-- ВАРИАНТ 4 -->
+    <div class="logo-box">
+        <span class="logo-box__label">Вариант 04</span>
+        <div class="logo-v4">
+            <div class="logo-v4__mark">
+                <span class="logo-v4__letter">Т</span>
+            </div>
+            <div class="logo-v4__text">
+                <span class="logo-v4__name">ТЕХНОПРЕСТИЖ</span>
+                <span class="logo-v4__tag">Бытовая техника</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ВАРИАНТ 4 — тёмный -->
+    <div class="logo-box logo-box--dark">
+        <span class="logo-box__label">Вариант 04 · dark</span>
+        <div class="logo-v4">
+            <div class="logo-v4__mark">
+                <span class="logo-v4__letter">Т</span>
+            </div>
+            <div class="logo-v4__text">
+                <span class="logo-v4__name">ТЕХНОПРЕСТИЖ</span>
+                <span class="logo-v4__tag">Бытовая техника</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

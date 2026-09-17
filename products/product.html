@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Товар — ТЕХНОПРЕСТИЖ</title>
+
+<meta name="description" id="meta-description" content="Бытовая техника ТЕХНОПРЕСТИЖ от производителя. Гарантия 3 года, доставка по всей России.">
+<link rel="canonical" id="canonical-link" href="https://technoprestige.ru/products/product.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#C7A06F">
+<meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%230A0A0A' width='100' height='100'/%3E%3Ctext x='50' y='72' font-family='Georgia,serif' font-size='72' font-weight='700' fill='%23C7A06F' text-anchor='middle'%3EТ%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/animations.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/extras.css">
+<link rel="stylesheet" href="../css/features.css">
+<link rel="stylesheet" href="../css/fixes.css">
+
+<style>
+.product-reviews { padding: 80px 60px; border-bottom: 1px solid var(--border); }
+.product-reviews__list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+.product-reviews__empty { grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-3); font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px dashed var(--border-strong); }
+.product-reviews__cta { text-align: center; margin-top: 50px; padding-top: 40px; border-top: 1px solid var(--border); }
+.product-reviews__cta p { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-3); margin-bottom: 20px; }
+
+.product-reviews .review-card { padding: 28px; background: var(--bg-soft); border: 1px solid var(--border); transition: border-color 0.4s ease, transform 0.4s ease; position: relative; animation: cardFadeIn 0.5s ease both; }
+@keyframes cardFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.product-reviews .review-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+.product-reviews .review-card__head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; gap: 14px; }
+.product-reviews .review-card__avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), #8A5A2A); color: #fff; font-family: var(--font-display); font-size: 17px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.product-reviews .review-card__meta { flex: 1; }
+.product-reviews .review-card__name { font-family: var(--font-display); font-size: 18px; font-weight: 400; margin-bottom: 4px; color: var(--text); }
+.product-reviews .review-card__date { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; color: var(--text-3); text-transform: uppercase; }
+.product-reviews .review-card__stars { display: flex; gap: 3px; flex-shrink: 0; }
+.product-reviews .review-card__stars svg { width: 14px; height: 14px; fill: #C7A06F; }
+.product-reviews .review-card__stars svg.empty { fill: none; stroke: #C7A06F; stroke-width: 1.5; }
+.product-reviews .review-card__text { font-size: 14px; line-height: 1.7; color: var(--text-2); }
+
+@media (max-width: 1000px) {
+    .product-reviews { padding: 48px 20px; }
+    .product-reviews__list { grid-template-columns: 1fr; gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Перейти к содержанию</a>
+
+<div class="cursor" id="cursor"><div class="cursor__dot"></div></div>
+<canvas class="cursor-canvas" id="cursor-canvas"></canvas>
+
+<header class="nav">
+    <a href="../index.html" class="nav__logo">ТЕХНОПРЕСТИЖ</a>
+    <nav class="nav__menu">
+        <a href="../index.html" class="nav__link">Главная</a>
+        <a href="../catalog.html" class="nav__link">Каталог</a>
+        <a href="../about.html" class="nav__link">О компании</a>
+        <a href="../reviews-faq.html" class="nav__link">Отзывы и FAQ</a>
+        <a href="../contacts.html" class="nav__link">Контакты</a>
+    </nav>
+    <a href="../contacts.html" class="nav__cta">Связаться</a>
+</header>
+
+<main class="main" id="main-content">
+
+<section class="project-hero">
+    <div class="project-hero__left">
+        <p class="eyebrow" data-reveal id="product-tag">◆ ТОВАР</p>
+        <h1 class="project-hero__title" data-reveal id="product-title">Загрузка...</h1>
+        <p class="project-hero__desc" data-reveal id="product-desc">Загрузка...</p>
+        <div class="project-hero__meta" data-reveal id="product-meta"></div>
+    </div>
+    <div class="project-hero__right">
+        <div class="project-viewer" id="project-viewer"></div>
+    </div>
+</section>
+
+<section class="specs">
+    <header class="section-head">
+        <p class="eyebrow" data-reveal>01 / ХАРАКТЕРИСТИКИ</p>
+        <h2 class="section-title" data-reveal>Технические<br><em>данные</em></h2>
+    </header>
+    <div class="specs__grid" id="product-specs"></div>
+</section>
+
+<section class="timeline-section">
+    <header class="section-head">
+        <p class="eyebrow" data-reveal>02 / ПРЕИМУЩЕСТВА</p>
+        <h2 class="section-title" data-reveal>Почему<br><em>выбирают</em></h2>
+    </header>
+    <div class="timeline" id="product-timeline"></div>
+</section>
+
+<section class="product-reviews" id="product-reviews">
+    <header class="section-head">
+        <p class="eyebrow" data-reveal>03 / ОТЗЫВЫ</p>
+        <h2 class="section-title" data-reveal>Отзывы<br><em>покупателей</em></h2>
+    </header>
+    <div class="product-reviews__list" id="product-reviews-list"></div>
+    <div class="product-reviews__cta" id="product-reviews-cta" style="display:none;">
+        <p>Хотите оставить свой отзыв?</p>
+        <a href="../reviews-faq.html" class="btn btn--primary">Оставить отзыв <span class="arrow">→</span></a>
+    </div>
+</section>
+
+<section class="back-link">
+    <a href="../catalog.html" class="btn btn--ghost">← Весь каталог</a>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="footer__top">
+        <div class="footer__col footer__col--brand">
+            <div class="footer__logo">ТЕХНОПРЕСТИЖ</div>
+            <p class="footer__desc">Российский производитель бытовой техники с 2012 года. Собственный завод, 60+ видов продукции, гарантия 3 года.</p>
+        </div>
+        <div class="footer__col">
+            <h4 class="footer__title">Навигация</h4>
+            <nav class="footer__nav">
+                <a href="../index.html">Главная</a>
+                <a href="../catalog.html">Каталог</a>
+                <a href="../about.html">О компании</a>
+                <a href="../reviews-faq.html">Отзывы и FAQ</a>
+                <a href="../contacts.html">Контакты</a>
+            </nav>
+        </div>
+        <div class="footer__col">
+            <h4 class="footer__title">Контакты</h4>
+            <div class="footer__contacts">
+                <a href="tel:88001234567">8 (800) 123-45-67</a>
+                <a href="mailto:info@technoprestige.ru">info@technoprestige.ru</a>
+                <p>Санкт-Петербург,<br>ул. Технологическая, 10</p>
+            </div>
+        </div>
+        <div class="footer__col">
+            <h4 class="footer__title">Реквизиты</h4>
+            <div class="footer__requisites">
+                <p>ООО «ТЕХНОПРЕСТИЖ»</p>
+                <p>ИНН 7801234567</p>
+                <p>ОГРН 1127800000001</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <div class="footer__copy" id="product-footer">© 2026. ТЕХНОПРЕСТИЖ. Все права защищены.</div>
+        <div class="footer__policy">
+            <a href="#">Политика конфиденциальности</a>
+            <a href="#">Пользовательское соглашение</a>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/libs/three.min.js"></script>
+<script src="../js/libs/gsap.min.js"></script>
+<script src="../js/libs/ScrollTrigger.min.js"></script>
+<script src="../js/libs/lenis.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/cursor.js"></script>
+<script src="../js/three-object.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/extras.js"></script>
+<script src="../js/features.js"></script>
+
+<script>
+/* ============================================
+   РЕНДЕР ДАННЫХ ТОВАРА
+   ============================================ */
+(function() {
+    function render() {
+        if (!window.TECHNOPRESTIGE_DATA) return;
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id') || 'fridge-x500';
+        const p = window.TECHNOPRESTIGE_DATA.products.find(x => x.id === id);
+        if (!p) { document.getElementById('product-title').textContent = 'Товар не найден'; return; }
+        document.title = p.name + ' — ТЕХНОПРЕСТИЖ';
+
+        const canonical = document.getElementById('canonical-link');
+        if (canonical) canonical.href = 'https://technoprestige.ru/products/product.html?id=' + id;
+        const metaDesc = document.getElementById('meta-description');
+        if (metaDesc) metaDesc.setAttribute('content', p.short + '. ' + p.long);
+
+        document.getElementById('product-tag').textContent = '◆ ' + p.tag + ' / 2024';
+        document.getElementById('product-title').innerHTML = p.name.split(' ')[0] + '<br><em>' + p.name + '</em>';
+        document.getElementById('product-desc').textContent = p.long;
+        document.getElementById('product-meta').innerHTML = `
+            <div><span class="lbl">ЦЕНА</span><span class="val">${p.price}</span></div>
+            <div><span class="lbl">КАТЕГОРИЯ</span><span class="val">${p.tag}</span></div>
+            <div><span class="lbl">ГАРАНТИЯ</span><span class="val">3 года</span></div>
+            <div><span class="lbl">ДОСТАВКА</span><span class="val">2–5 дней</span></div>
+        `;
+        document.getElementById('product-specs').innerHTML = p.specs.map(s => `
+            <div class="spec" data-reveal><span class="spec__num">${s.num}</span><h4>${s.title}</h4><p>${s.text}</p></div>
+        `).join('');
+        document.getElementById('product-timeline').innerHTML = p.timeline.map(t => `
+            <div class="tl-step" data-reveal><span class="date">${t.date}</span><h4>${t.title}</h4><p>${t.text}</p></div>
+        `).join('');
+        document.getElementById('product-footer').textContent = '© 2026. ' + p.name;
+        setTimeout(() => { document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-visible')); }, 100);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
+    else render();
+})();
+
+/* ============================================
+   ОТЗЫВЫ НА СТРАНИЦЕ ТОВАРА
+   ============================================ */
+(function() {
+    'use strict';
+
+    const DEFAULT_REVIEWS = [
+        { name: 'Анна Ковалёва', date: '15.08.2025', rating: 5, text: 'Холодильник X500 — огонь. Тихий, удобный, дети довольны. Доставили за 2 дня, установили быстро.', productId: 'fridge-x500' },
+        { name: 'Игорь Петров', date: '03.07.2025', rating: 5, text: 'Купил стиралку W300 для дачи. Работает без нареканий. Мотор тихий, отжим отличный.', productId: 'washer-w300' },
+        { name: 'Мария Лебедева', date: '22.06.2025', rating: 4, text: 'Мультиварка C400 хорошая, но хотелось бы побольше программ. В остальном — супер.', productId: 'multicooker-c400' }
+    ];
+
+    const STORAGE_KEY = 'technoprestige_user_reviews';
+
+    function getUserReviews() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+        catch (e) { return []; }
+    }
+
+    function starsHTML(rating) {
+        let html = '';
+        for (let i = 1; i <= 5; i++) {
+            html += i <= rating
+                ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>'
+                : '<svg class="empty" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+        }
+        return html;
+    }
+    function initials(name) {
+        return name.trim().split(/\s+/).slice(0, 2).map(w => w[0] ? w[0].toUpperCase() : '').join('');
+    }
+
+    function renderProductReviews() {
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('id');
+        if (!productId) return;
+
+        const list = document.getElementById('product-reviews-list');
+        const cta = document.getElementById('product-reviews-cta');
+        if (!list) return;
+
+        const userReviews = getUserReviews().filter(r => r.productId === productId);
+        const defaultFiltered = DEFAULT_REVIEWS.filter(r => r.productId === productId);
+        const all = [...userReviews.slice().reverse(), ...defaultFiltered];
+
+        if (all.length === 0) {
+            list.innerHTML = '<p class="product-reviews__empty">Пока нет отзывов об этом товаре. Станьте первым!</p>';
+            cta.style.display = 'block';
+            return;
+        }
+
+        list.innerHTML = all.map(r => `
+            <div class="review-card">
+                <div class="review-card__head">
+                    <div class="review-card__avatar">${initials(r.name)}</div>
+                    <div class="review-card__meta">
+                        <div class="review-card__name">${r.name}</div>
+                        <div class="review-card__date">${r.date}</div>
+                    </div>
+                    <div class="review-card__stars">${starsHTML(r.rating)}</div>
+                </div>
+                <p class="review-card__text">${r.text}</p>
+            </div>
+        `).join('');
+
+        cta.style.display = 'block';
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', renderProductReviews);
+    else renderProductReviews();
+})();
+</script>
+<script src="../js/features.js"></script>
+<script src="../js/chatbot.js"></script> 
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Каталог бытовой техники — ТЕХНОПРЕСТИЖ</title>
+<meta name="description" content="Более 60 видов бытовой техники: холодильники, стиральные машины, микроволновки, пылесосы, блендеры, мультиварки. Гарантия 3 года, доставка по России.">
+<link rel="canonical" href="https://technoprestige.ru/catalog.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#C7A06F">
+<meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%230A0A0A' width='100' height='100'/%3E%3Ctext x='50' y='72' font-family='Georgia,serif' font-size='72' font-weight='700' fill='%23C7A06F' text-anchor='middle'%3EТ%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/extras.css">
+<link rel="stylesheet" href="css/features.css">
+<link rel="stylesheet" href="css/fixes.css">
+</head>
+<body>
+<a href="#main-content" class="skip-link">Перейти к содержанию</a>
+<div class="cursor" id="cursor"><div class="cursor__dot"></div></div>
+<canvas class="cursor-canvas" id="cursor-canvas"></canvas>
+<header class="nav">
+    <a href="index.html" class="nav__logo">ТЕХНОПРЕСТИЖ</a>
+    <nav class="nav__menu">
+        <a href="index.html" class="nav__link">Главная</a>
+        <a href="catalog.html" class="nav__link is-active">Каталог</a>
+        <a href="about.html" class="nav__link">О компании</a>
+        <a href="reviews-faq.html" class="nav__link">Отзывы и FAQ</a>
+        <a href="contacts.html" class="nav__link">Контакты</a>
+    </nav>
+    <a href="contacts.html" class="nav__cta">Связаться</a>
+</header>
+<main class="main" id="main-content">
+<section class="page-hero">
+    <p class="eyebrow" data-reveal>◆ КАТАЛОГ</p>
+    <h1 class="page-hero__title" data-reveal>Наша<br><em>техника</em></h1>
+    <p class="page-hero__desc" data-reveal>Более 60 видов бытовой техники. Гарантия 3 года, доставка по России, сервис в 100+ городах.</p>
+</section>
+<section class="catalog-section">
+    <div class="catalog-grid" id="catalog-grid"></div>
+</section>
+<section class="cta">
+    <h2 class="cta__title" data-reveal>Не нашли<br><em>нужное?</em></h2>
+    <p data-reveal>Свяжитесь с нами — подберём технику под ваши задачи.</p>
+    <a href="contacts.html" class="btn btn--primary" data-reveal>Связаться <span class="arrow">→</span></a>
+</section>
+</main>
+
+<footer class="footer">
+    <div class="footer__top">
+        <div class="footer__col footer__col--brand">
+            <div class="footer__logo">ТЕХНОПРЕСТИЖ</div>
+            <p class="footer__desc">Российский производитель бытовой техники с 2012 года. Собственный завод, 60+ видов продукции, гарантия 3 года.</p>
+        </div>
+        <div class="footer__col">
+            <h4 class="footer__title">Навигация</h4>
+            <nav class="footer__nav">
+                <a href="index.html">Главная</a>
+                <a href="catalog.html">Каталог</a>
+                <a href="about.html">О компании</a>
+                <a href="reviews-faq.html">Отзывы и FAQ</a>
+                <a href="contacts.html">Контакты</a>
+            </nav>
+        </div>
+        <div class="footer__col">
+            <h4 class="footer__title">Контакты</h4>
+            <div class="footer__contacts">
+                <a href="tel:88001234567">8 (800) 123-45-67</a>
+                <a href="mailto:info@technoprestige.ru">info@technoprestige.ru</a>
+                <p>Санкт-Петербург,<br>ул. Технологическая, 10</p>
+            </div>
+        </div>
+        <div class="footer__col">
+            <h4 class="footer__title">Реквизиты</h4>
+            <div class="footer__requisites">
+                <p>ООО «ТЕХНОПРЕСТИЖ»</p>
+                <p>ИНН 7801234567</p>
+                <p>ОГРН 1127800000001</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <div class="footer__copy">© 2026. ТЕХНОПРЕСТИЖ. Все права защищены.</div>
+        <div class="footer__policy">
+            <a href="#">Политика конфиденциальности</a>
+            <a href="#">Пользовательское соглашение</a>
+        </div>
+    </div>
+</footer>
+
+<script src="js/libs/three.min.js"></script>
+<script src="js/libs/gsap.min.js"></script>
+<script src="js/libs/ScrollTrigger.min.js"></script>
+<script src="js/libs/lenis.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/main.js"></script>
+<script src="js/extras.js"></script>
+<script src="js/features.js"></script>
+<script src="js/chatbot.js"></script>
+</body>
+</html>

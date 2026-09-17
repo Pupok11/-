@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ТЕХНОПРЕСТИЖ — Современная бытовая техника</title>
+<meta name="description" content="Холодильники, стиральные машины, микроволновки, пылесосы, мультиварки — всё от производителя. Гарантия 3 года, доставка по всей России.">
+<link rel="canonical" href="https://technoprestige.ru/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#C7A06F">
+<meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%230A0A0A' width='100' height='100'/%3E%3Ctext x='50' y='72' font-family='Georgia,serif' font-size='72' font-weight='700' fill='%23C7A06F' text-anchor='middle'%3EТ%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/extras.css">
+<link rel="stylesheet" href="css/features.css">
+<link rel="stylesheet" href="css/fixes.css">
+</head>
+<body>
+<a href="#main-content" class="skip-link">Перейти к содержанию</a>
+<div class="preloader" id="preloader"><div class="preloader__inner"><div class="preloader__dot"></div><svg class="preloader__svg" viewBox="0 0 400 200"><path d="M 40 160 L 40 40 L 100 120 L 160 40 L 160 160 M 160 160 L 160 40 L 220 120 L 280 40 L 280 160 M 280 160 L 280 40 L 340 120 L 360 100" /></svg><div class="preloader__mini" id="preloader-mini"></div><div class="preloader__percent" id="preloader-percent">0%</div></div></div>
+<div class="cursor" id="cursor"><div class="cursor__dot"></div></div>
+<canvas class="cursor-canvas" id="cursor-canvas"></canvas>
+<header class="nav" id="nav">
+    <a href="index.html" class="nav__logo">ТЕХНОПРЕСТИЖ</a>
+    <nav class="nav__menu">
+        <a href="index.html" class="nav__link is-active">Главная</a>
+        <a href="catalog.html" class="nav__link">Каталог</a>
+        <a href="about.html" class="nav__link">О компании</a>
+        <a href="reviews-faq.html" class="nav__link">Отзывы и FAQ</a>
+        <a href="contacts.html" class="nav__link">Контакты</a>
+    </nav>
+    <a href="contacts.html" class="nav__cta">Связаться</a>
+</header>
+<main class="main" id="main-content">
+<section class="hero">
+    <div class="hero__left">
+        <p class="eyebrow" data-reveal>◆ САНКТ-ПЕТЕРБУРГ ◆ С 2012 ГОДА</p>
+        <h1 class="hero__title"><span class="line" data-reveal>ТЕХНО</span><span class="line line--italic" data-reveal>ПРЕСТИЖ</span></h1>
+        <p class="hero__desc" data-reveal>Современная бытовая техника для вашего дома. Холодильники, стиральные машины, микроволновки, пылесосы, мультиварки — всё от производителя. Гарантия 3 года, доставка по всей России.</p>
+        <div class="hero__cta" data-reveal>
+            <a href="catalog.html" class="btn btn--primary">Смотреть каталог <span class="arrow">→</span></a>
+            <a href="contacts.html" class="btn btn--ghost">Связаться</a>
+        </div>
+        <div class="hero__stats" data-reveal>
+            <div><span class="num" data-count="14">0</span><span class="lbl">лет опыта</span></div>
+            <div><span class="num" data-count="60">0</span><span class="lbl">видов техники</span></div>
+            <div><span class="num" data-count="10000">0</span><span class="lbl">клиентов</span></div>
+        </div>
+    </div>
+    <div class="hero__right">
+        <div class="carousel-3d" id="carousel-3d"></div>
+        <div class="carousel-nav">
+            <button class="carousel-btn" id="carousel-prev" aria-label="Предыдущий товар">←</button>
+            <div class="carousel-dots" id="carousel-dots"></div>
+            <button class="carousel-btn" id="carousel-next" aria-label="Следующий товар">→</button>
+        </div>
+        <div class="carousel-label">
+            <span class="carousel-label__tag" id="carousel-tag">ХОЛОДИЛЬНИК</span>
+            <h3 id="carousel-name">ТехноПрестиж X500</h3>
+        </div>
+    </div>
+</section>
+<section class="metrics">
+    <div class="metrics__grid">
+        <div class="metric-card" data-reveal><div class="metric-card__icon" id="metric-icon-1"></div><h3>Гарантия</h3><p>3 года на всю продукцию компании</p><div class="metric-card__val"><span data-count="3">0</span> года</div></div>
+        <div class="metric-card" data-reveal><div class="metric-card__icon" id="metric-icon-2"></div><h3>Доставка</h3><p>По всей России за 2–5 дней</p><div class="metric-card__val"><span data-count="2">0</span>–<span data-count="5">0</span> дней</div></div>
+        <div class="metric-card" data-reveal><div class="metric-card__icon" id="metric-icon-3"></div><h3>Сервис</h3><p>Более 100 сервисных центров</p><div class="metric-card__val"><span data-count="100">0</span>+</div></div>
+    </div>
+</section>
+<section class="services" id="services">
+    <header class="section-head"><p class="eyebrow" data-reveal>01 / УСЛУГИ</p><h2 class="section-title" data-reveal>Полный цикл<br><em>обслуживания</em></h2></header>
+    <div class="services__grid">
+        <article class="service" data-reveal><span class="service__num">01</span><h3>Производство</h3><p>Собственный завод в Ленинградской области. Более 60 видов техники.</p><span class="service__price">от 4 500 ₽</span></article>
+        <article class="service" data-reveal><span class="service__num">02</span><h3>Доставка</h3><p>По всей России за 2–5 дней. Бесплатно при заказе от 10 000 ₽.</p><span class="service__price">от 500 ₽</span></article>
+        <article class="service" data-reveal><span class="service__num">03</span><h3>Установка</h3><p>Подключение и настройка техники. Гарантия на монтаж — 1 год.</p><span class="service__price">от 1 500 ₽</span></article>
+        <article class="service" data-reveal><span class="service__num">04</span><h3>Гарантийное обслуживание</h3><p>Более 100 сервисных центров по России. Ремонт за 3 дня.</p><span class="service__price">бесплатно</span></article>
+        <article class="service" data-reveal><span class="service__num">05</span><h3>Ремонт техники</h3><p>Ремонт любой сложности. Оригинальные запчасти со склада.</p><span class="service__price">от 2 000 ₽</span></article>
+        <article class="service" data-reveal><span class="service__num">06</span><h3>Оптовые закупки</h3><p>Для офисов, гостиниц, кафе. Скидки от 15%. Договор и отсрочка.</p><span class="service__price">индивидуально</span></article>
+    </div>
+</section>
+<section class="projects" id="products">
+    <header class="section-head"><p class="eyebrow" data-reveal>02 / КАТАЛОГ</p><h2 class="section-title" data-reveal>Популярные<br><em>товары</em></h2></header>
+    <div class="projects__grid" id="products-grid"></div>
+</section>
+<section class="tabs" id="tabs"></section>
+<section class="cta">
+    <h2 class="cta__title" data-reveal>Готовы обновить<br><em>свою технику?</em></h2>
+    <p data-reveal>Оставьте заявку — перезвоним за 15 минут.</p>
+    <a href="contacts.html" class="btn btn--primary" data-reveal>Оставить заявку <span class="arrow">→</span></a>
+</section>
+</main>
+
+<footer class="footer">
+    <div class="footer__top">
+        <div class="footer__col footer__col--brand">
+            <div class="footer__logo">ТЕХНОПРЕСТИЖ</div>
+            <p class="footer__desc">Российский производитель бытовой техники с 2012 года. Собственный завод, 60+ видов продукции, гарантия 3 года.</p>
+        </div>
+        <div class="footer__col">
+            <h4 class="footer__title">Навигация</h4>
+            <nav class="footer__nav">
+                <a href="index.html">Главная</a>
+                <a href="catalog.html">Каталог</a>
+                <a href="about.html">О компании</a>
+                <a href="reviews-faq.html">Отзывы и FAQ</a>
+                <a href="contacts.html">Контакты</a>
+            </nav>
+        </div>
+        <div class="footer__col">
+            <h4 class="footer__title">Контакты</h4>
+            <div class="footer__contacts">
+                <a href="tel:88001234567">8 (800) 123-45-67</a>
+                <a href="mailto:info@technoprestige.ru">info@technoprestige.ru</a>
+                <p>Санкт-Петербург,<br>ул. Технологическая, 10</p>
+            </div>
+        </div>
+        <div class="footer__col">
+            <h4 class="footer__title">Реквизиты</h4>
+            <div class="footer__requisites">
+                <p>ООО «ТЕХНОПРЕСТИЖ»</p>
+                <p>ИНН 7801234567</p>
+                <p>ОГРН 1127800000001</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <div class="footer__copy">© 2026. ТЕХНОПРЕСТИЖ. Все права защищены.</div>
+        <div class="footer__policy">
+            <a href="#">Политика конфиденциальности</a>
+            <a href="#">Пользовательское соглашение</a>
+        </div>
+    </div>
+</footer>
+
+<script src="js/libs/three.min.js"></script>
+<script src="js/libs/gsap.min.js"></script>
+<script src="js/libs/ScrollTrigger.min.js"></script>
+<script src="js/libs/lenis.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/preloader.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/three-home.js"></script>
+<script src="js/main.js"></script>
+<script src="js/extras.js"></script>
+<script src="js/features.js"></script>
+<script src="js/chatbot.js"></script>
+</body>
+</html>
