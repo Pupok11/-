@@ -1,6 +1,6 @@
 /* ============================================
-   THREE-OBJECT.JS — 3D-модель объекта
-   Использует data.js для выбора типа модели
+   THREE-OBJECT.JS — 3D-модель товара
+   ИСПРАВЛЕНО: тёмные материалы для контраста
    ============================================ */
 
 (function() {
@@ -10,325 +10,308 @@
     if (!container || typeof THREE === 'undefined') return;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-        40,
-        container.clientWidth / container.clientHeight,
-        0.1,
-        1000
-    );
+    const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 1000);
     camera.position.set(15, 12, 20);
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
     container.appendChild(renderer.domElement);
 
     // === LIGHTS ===
-    scene.add(new THREE.AmbientLight(0xFFFFFF, 0.55));
-
-    const keyLight = new THREE.DirectionalLight(0xFFFFFF, 1.1);
+    scene.add(new THREE.AmbientLight(0xFFFFFF, 0.75));
+    const keyLight = new THREE.DirectionalLight(0xFFFFFF, 1.4);
     keyLight.position.set(15, 25, 10);
+    keyLight.castShadow = true;
     scene.add(keyLight);
-
-    const fillLight = new THREE.DirectionalLight(0xC7A06F, 0.5);
+    const fillLight = new THREE.DirectionalLight(0xC7A06F, 0.6);
     fillLight.position.set(-10, 8, 10);
     scene.add(fillLight);
-
     const rimLight = new THREE.PointLight(0xC7A06F, 1.5, 50);
     rimLight.position.set(0, 15, -15);
     scene.add(rimLight);
 
-    // === MATERIALS ===
-    const concreteMat = new THREE.MeshStandardMaterial({
-        color: 0xE8E5DF,
-        metalness: 0.15,
-        roughness: 0.85
-    });
+    // === MATERIALS — ТЁМНЫЕ для контраста со светлым фоном ===
+    const bodyMat = new THREE.MeshStandardMaterial({ color: 0x2A2A2A, metalness: 0.35, roughness: 0.5 });
+    const doorMat = new THREE.MeshStandardMaterial({ color: 0xF5F3EF, metalness: 0.2, roughness: 0.3 });
+    const goldMat = new THREE.MeshStandardMaterial({ color: 0xC7A06F, metalness: 1, roughness: 0.25 });
+    const darkGlassMat = new THREE.MeshStandardMaterial({ color: 0x0A0A0A, metalness: 0.9, roughness: 0.1 });
+    const screenMat = new THREE.MeshStandardMaterial({ color: 0xC7A06F, emissive: 0xC7A06F, emissiveIntensity: 1.2, metalness: 1, roughness: 0.2 });
+    const steelMat = new THREE.MeshStandardMaterial({ color: 0xCCCCCC, metalness: 0.9, roughness: 0.3 });
 
-    const goldMat = new THREE.MeshStandardMaterial({
-        color: 0xC7A06F,
-        metalness: 1,
-        roughness: 0.25
-    });
+    // === GET PRODUCT ID FROM URL ===
+    function getProductId() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('id') || 'fridge-x500';
+    }
 
-    const glassMat = new THREE.MeshStandardMaterial({
-        color: 0xD4D0C8,
-        metalness: 0.7,
-        roughness: 0.1,
-        transparent: true,
-        opacity: 0.82
-    });
+    const productId = getProductId();
+    let productData = null;
+    if (window.TECHNOPRESTIGE_DATA) {
+        productData = window.TECHNOPRESTIGE_DATA.products.find(p => p.id === productId);
+    }
+    const modelType = productData ? productData.modelType : 'fridge';
 
-    const darkMat = new THREE.MeshStandardMaterial({
-        color: 0x1A1A1A,
-        metalness: 0.5,
-        roughness: 0.5
-    });
-
-    // === BUILDING GROUP ===
     const building = new THREE.Group();
     scene.add(building);
 
-    // Detect project from URL
-    function getProjectId() {
-        const path = window.location.pathname;
-        const match = path.match(/object-(\d+)-/);
-        return match ? `object-${match[1]}` : null;
-    }
+    // === SHADOW PLANE ===
+    const shadowPlane = new THREE.Mesh(
+        new THREE.PlaneGeometry(30, 30),
+        new THREE.ShadowMaterial({ opacity: 0.2 })
+    );
+    shadowPlane.rotation.x = -Math.PI / 2;
+    shadowPlane.receiveShadow = true;
+    building.add(shadowPlane);
 
-    const projectId = getProjectId();
+    // === MODEL BUILDERS ===
 
-    // Find project in data
-    let projectData = null;
-    if (window.MONOLIT_DATA) {
-        projectData = window.MONOLIT_DATA.projects.find(p => p.id.startsWith(projectId || 'object-01'));
-    }
+    function buildFridge() {
+        const body = new THREE.Mesh(new THREE.BoxGeometry(2.2, 4.5, 1.6), bodyMat);
+        body.position.y = 2.25;
+        body.castShadow = true;
+        body.receiveShadow = true;
+        building.add(body);
 
-    const modelType = projectData ? projectData.modelType : 'towers';
+        const topDoor = new THREE.Mesh(new THREE.BoxGeometry(2.15, 1.1, 0.05), doorMat);
+        topDoor.position.set(0, 3.9, 0.83);
+        topDoor.castShadow = true;
+        building.add(topDoor);
 
-    // === MODEL FACTORY ===
-    function buildTowers() {
-        const positions = [
-            [-8, 0, 0], [-4, 0, -2], [0, 0, 0], [4, 0, 2], [8, 0, 0],
-            [-6, 0, 4], [-2, 0, 5], [2, 0, 4], [6, 0, 5],
-            [-8, 0, 8], [0, 0, 8], [8, 0, 8]
-        ];
-        const heights = [10, 13, 16, 13, 10, 12, 14, 12, 14, 10, 13, 10];
+        const bottomDoor = new THREE.Mesh(new THREE.BoxGeometry(2.15, 3.1, 0.05), doorMat);
+        bottomDoor.position.set(0, 2.1, 0.83);
+        bottomDoor.castShadow = true;
+        building.add(bottomDoor);
 
-        positions.forEach((pos, i) => {
-            const h = heights[i];
-            const tower = new THREE.Mesh(
-                new THREE.BoxGeometry(2, h, 2),
-                concreteMat
-            );
-            tower.position.set(pos[0], h / 2, pos[2]);
-            building.add(tower);
+        const hT = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.8, 0.08), goldMat);
+        hT.position.set(1.05, 3.9, 0.9);
+        building.add(hT);
 
-            // Roof
-            const roof = new THREE.Mesh(
-                new THREE.BoxGeometry(2.15, 0.15, 2.15),
-                goldMat
-            );
-            roof.position.set(pos[0], h + 0.07, pos[2]);
-            building.add(roof);
+        const hB = new THREE.Mesh(new THREE.BoxGeometry(0.08, 1.6, 0.08), goldMat);
+        hB.position.set(1.05, 2.1, 0.9);
+        building.add(hB);
 
-            // Windows
-            const floors = Math.floor(h / 1.5);
-            for (let j = 0; j < floors; j++) {
-                const y = j * 1.5 + 0.75;
-                [0, Math.PI, -Math.PI / 2, Math.PI / 2].forEach((rot, k) => {
-                    const win = new THREE.Mesh(
-                        new THREE.PlaneGeometry(1.6, 0.5),
-                        glassMat
-                    );
-                    if (k === 0) win.position.set(pos[0], y, pos[2] + 1.01);
-                    else if (k === 1) win.position.set(pos[0], y, pos[2] - 1.01);
-                    else if (k === 2) win.position.set(pos[0] - 1.01, y, pos[2]);
-                    else win.position.set(pos[0] + 1.01, y, pos[2]);
-                    win.rotation.y = rot;
-                    building.add(win);
-                });
+        const disp = new THREE.Mesh(new THREE.PlaneGeometry(0.6, 0.3), screenMat);
+        disp.position.set(-0.5, 3.9, 0.87);
+        building.add(disp);
+
+        for (let x = -0.9; x <= 0.9; x += 1.8) {
+            for (let z = -0.6; z <= 0.6; z += 1.2) {
+                const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.15, 8), steelMat);
+                leg.position.set(x, 0.075, z);
+                leg.castShadow = true;
+                building.add(leg);
             }
-        });
-
-        // Ground
-        const ground = new THREE.Mesh(
-            new THREE.BoxGeometry(26, 0.2, 20),
-            concreteMat
-        );
-        ground.position.set(0, -0.1, 4);
-        building.add(ground);
-    }
-
-    function buildHouse() {
-        // Main volume
-        const main = new THREE.Mesh(
-            new THREE.BoxGeometry(8, 3.5, 6),
-            concreteMat
-        );
-        main.position.set(0, 1.75, 0);
-        building.add(main);
-
-        // Second floor
-        const second = new THREE.Mesh(
-            new THREE.BoxGeometry(6, 3, 5),
-            concreteMat
-        );
-        second.position.set(0, 5, -0.5);
-        building.add(second);
-
-        // Panoramic windows
-        const winFront = new THREE.Mesh(
-            new THREE.PlaneGeometry(7.5, 3),
-            glassMat
-        );
-        winFront.position.set(0, 1.75, 3.01);
-        building.add(winFront);
-
-        const winSecond = new THREE.Mesh(
-            new THREE.PlaneGeometry(5.5, 2.5),
-            glassMat
-        );
-        winSecond.position.set(0, 5, 2.01);
-        building.add(winSecond);
-
-        // Terrace
-        const terrace = new THREE.Mesh(
-            new THREE.BoxGeometry(6, 0.2, 3),
-            goldMat
-        );
-        terrace.position.set(0, 3.4, 4.5);
-        building.add(terrace);
-
-        // Roof
-        const roof = new THREE.Mesh(
-            new THREE.BoxGeometry(6.2, 0.2, 5.2),
-            goldMat
-        );
-        roof.position.set(0, 6.6, -0.5);
-        building.add(roof);
-
-        // Ground
-        const ground = new THREE.Mesh(
-            new THREE.BoxGeometry(14, 0.15, 12),
-            new THREE.MeshStandardMaterial({ color: 0xB8C4A8, roughness: 0.9 })
-        );
-        ground.position.set(0, -0.07, 0);
-        building.add(ground);
-    }
-
-    function buildBlade() {
-        // Tall tower
-        const tower = new THREE.Mesh(
-            new THREE.BoxGeometry(3.5, 18, 6),
-            glassMat
-        );
-        tower.position.y = 9;
-        building.add(tower);
-
-        // Gold rims
-        for (let y = 0.5; y < 18; y += 1) {
-            const rim = new THREE.Mesh(
-                new THREE.BoxGeometry(3.6, 0.06, 6.1),
-                goldMat
-            );
-            rim.position.y = y;
-            building.add(rim);
         }
 
-        // Spire
-        const spire = new THREE.Mesh(
-            new THREE.ConeGeometry(2.5, 3, 4),
-            goldMat
-        );
-        spire.position.y = 19.5;
-        spire.rotation.y = Math.PI / 4;
-        building.add(spire);
+        camera.position.set(8, 8, 12);
+    }
 
-        // Base
-        const base = new THREE.Mesh(
-            new THREE.BoxGeometry(7, 0.6, 8),
-            concreteMat
-        );
-        base.position.y = 0.3;
+    function buildWasher() {
+        const body = new THREE.Mesh(new THREE.BoxGeometry(2.4, 2.4, 2.0), bodyMat);
+        body.position.y = 1.2;
+        body.castShadow = true;
+        body.receiveShadow = true;
+        building.add(body);
+
+        const topPanel = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.4, 2.0), doorMat);
+        topPanel.position.y = 2.2;
+        topPanel.castShadow = true;
+        building.add(topPanel);
+
+        const doorRing = new THREE.Mesh(new THREE.TorusGeometry(0.7, 0.1, 16, 32), goldMat);
+        doorRing.position.set(0, 1.2, 1.02);
+        building.add(doorRing);
+
+        const doorGlass = new THREE.Mesh(new THREE.CircleGeometry(0.65, 32), darkGlassMat);
+        doorGlass.position.set(0, 1.2, 1.01);
+        building.add(doorGlass);
+
+        const disp = new THREE.Mesh(new THREE.PlaneGeometry(0.7, 0.25), screenMat);
+        disp.position.set(-0.5, 2.2, 1.02);
+        building.add(disp);
+
+        for (let i = 0; i < 4; i++) {
+            const btn = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.05, 12), goldMat);
+            btn.rotation.x = Math.PI / 2;
+            btn.position.set(0.4 + i * 0.2, 2.2, 1.02);
+            building.add(btn);
+        }
+
+        for (let x = -1; x <= 1; x += 2) {
+            for (let z = -0.8; z <= 0.8; z += 1.6) {
+                const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.1, 8), steelMat);
+                leg.position.set(x, 0.05, z);
+                leg.castShadow = true;
+                building.add(leg);
+            }
+        }
+
+        camera.position.set(7, 7, 10);
+    }
+
+    function buildMicrowave() {
+        const body = new THREE.Mesh(new THREE.BoxGeometry(2.4, 1.5, 1.6), bodyMat);
+        body.position.y = 0.75;
+        body.castShadow = true;
+        body.receiveShadow = true;
+        building.add(body);
+
+        const door = new THREE.Mesh(new THREE.BoxGeometry(1.7, 1.3, 0.05), doorMat);
+        door.position.set(-0.3, 0.75, 0.82);
+        door.castShadow = true;
+        building.add(door);
+
+        const windowGlass = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 1.0), darkGlassMat);
+        windowGlass.position.set(-0.3, 0.75, 0.85);
+        building.add(windowGlass);
+
+        const panel = new THREE.Mesh(new THREE.BoxGeometry(0.55, 1.3, 0.05), new THREE.MeshStandardMaterial({ color: 0x1A1A1A, metalness: 0.5, roughness: 0.5 }));
+        panel.position.set(0.85, 0.75, 0.82);
+        building.add(panel);
+
+        const disp = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 0.2), screenMat);
+        disp.position.set(0.85, 1.1, 0.85);
+        building.add(disp);
+
+        for (let i = 0; i < 6; i++) {
+            const btn = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.04, 12), goldMat);
+            btn.rotation.x = Math.PI / 2;
+            btn.position.set(0.7 + (i % 2) * 0.25, 0.9 - Math.floor(i / 2) * 0.2, 0.85);
+            building.add(btn);
+        }
+
+        const handle = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.5, 0.08), goldMat);
+        handle.position.set(0.5, 0.75, 0.85);
+        building.add(handle);
+
+        for (let x = -1; x <= 1; x += 2) {
+            for (let z = -0.6; z <= 0.6; z += 1.2) {
+                const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.08, 8), steelMat);
+                leg.position.set(x, 0.04, z);
+                leg.castShadow = true;
+                building.add(leg);
+            }
+        }
+
+        camera.position.set(6, 5, 8);
+    }
+
+    function buildVacuum() {
+        const body = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.2, 1.5, 16), bodyMat);
+        body.position.y = 0.75;
+        body.castShadow = true;
+        body.receiveShadow = true;
+        building.add(body);
+
+        const top = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.2, 0.6, 16), doorMat);
+        top.position.y = 1.8;
+        top.castShadow = true;
+        building.add(top);
+
+        const handle = new THREE.Mesh(new THREE.BoxGeometry(0.15, 1.2, 0.15), goldMat);
+        handle.position.set(0.5, 2.2, 0);
+        building.add(handle);
+
+        const hose = new THREE.Mesh(new THREE.TorusGeometry(0.6, 0.1, 8, 20), goldMat);
+        hose.position.set(-0.8, 1.2, 0);
+        hose.rotation.x = Math.PI / 3;
+        building.add(hose);
+
+        const wheel1 = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 0.2, 12), steelMat);
+        wheel1.rotation.z = Math.PI / 2;
+        wheel1.position.set(-0.9, 0.35, 0.6);
+        wheel1.castShadow = true;
+        building.add(wheel1);
+
+        const wheel2 = wheel1.clone();
+        wheel2.position.set(0.9, 0.35, 0.6);
+        building.add(wheel2);
+
+        camera.position.set(6, 6, 9);
+    }
+
+    function buildBlender() {
+        const base = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.8, 0.4, 16), bodyMat);
+        base.position.y = 0.2;
+        base.castShadow = true;
         building.add(base);
 
-        // Ground
-        const ground = new THREE.Mesh(
-            new THREE.BoxGeometry(14, 0.15, 14),
-            concreteMat
-        );
-        ground.position.y = -0.07;
-        building.add(ground);
+        const jar = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 1.8, 16), doorMat);
+        jar.position.y = 1.2;
+        jar.castShadow = true;
+        building.add(jar);
+
+        const lid = new THREE.Mesh(new THREE.CylinderGeometry(0.65, 0.65, 0.15, 16), goldMat);
+        lid.position.y = 2.15;
+        building.add(lid);
+
+        const handle = new THREE.Mesh(new THREE.BoxGeometry(0.15, 1.2, 0.15), goldMat);
+        handle.position.set(0.7, 1.2, 0);
+        building.add(handle);
+
+        const btn = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.05, 12), goldMat);
+        btn.rotation.x = Math.PI / 2;
+        btn.position.set(0, 0.4, 0.75);
+        building.add(btn);
+
+        camera.position.set(6, 6, 9);
     }
 
-    function buildIndustrial() {
-        // Main hall
-        const hall = new THREE.Mesh(
-            new THREE.BoxGeometry(14, 5, 8),
-            concreteMat
-        );
-        hall.position.set(0, 2.5, 0);
-        building.add(hall);
+    function buildMulticooker() {
+        const body = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.1, 1.6, 16), bodyMat);
+        body.position.y = 0.8;
+        body.castShadow = true;
+        body.receiveShadow = true;
+        building.add(body);
 
-        // Metal roof
-        const roof = new THREE.Mesh(
-            new THREE.BoxGeometry(14.2, 0.3, 8.2),
-            goldMat
-        );
-        roof.position.set(0, 5.15, 0);
-        building.add(roof);
+        const lid = new THREE.Mesh(new THREE.CylinderGeometry(1.05, 1.0, 0.3, 16), doorMat);
+        lid.position.y = 1.75;
+        lid.castShadow = true;
+        building.add(lid);
 
-        // Columns
-        for (let x = -6; x <= 6; x += 3) {
-            for (let z = -3; z <= 3; z += 3) {
-                const col = new THREE.Mesh(
-                    new THREE.BoxGeometry(0.4, 5, 0.4),
-                    darkMat
-                );
-                col.position.set(x, 2.5, z);
-                building.add(col);
-            }
-        }
+        const handle = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.6), goldMat);
+        handle.position.set(0, 2.0, 0.8);
+        building.add(handle);
 
-        // АБК (administrative)
-        const abk = new THREE.Mesh(
-            new THREE.BoxGeometry(5, 6, 4),
-            concreteMat
-        );
-        abk.position.set(10, 3, 0);
-        building.add(abk);
+        const panel = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.4, 0.1), doorMat);
+        panel.position.set(0, 1.2, 1.0);
+        building.add(panel);
 
-        // ABK windows
-        for (let y = 1; y < 6; y += 1.5) {
-            const win = new THREE.Mesh(
-                new THREE.PlaneGeometry(4.5, 0.8),
-                glassMat
-            );
-            win.position.set(10, y, 2.01);
-            building.add(win);
-        }
+        const disp = new THREE.Mesh(new THREE.PlaneGeometry(0.5, 0.2), screenMat);
+        disp.position.set(0, 1.25, 1.06);
+        building.add(disp);
 
-        // Ground
-        const ground = new THREE.Mesh(
-            new THREE.BoxGeometry(28, 0.2, 16),
-            new THREE.MeshStandardMaterial({ color: 0xD4D0C8, roughness: 0.9 })
-        );
-        ground.position.set(2, -0.1, 0);
-        building.add(ground);
+        const btn1 = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.05, 12), goldMat);
+        btn1.rotation.x = Math.PI / 2;
+        btn1.position.set(-0.25, 0.9, 1.05);
+        building.add(btn1);
+
+        const btn2 = btn1.clone();
+        btn2.position.set(0.25, 0.9, 1.05);
+        building.add(btn2);
+
+        camera.position.set(6, 6, 9);
     }
 
-    // Build the right model
+    // === BUILD THE RIGHT MODEL ===
     switch (modelType) {
-        case 'house':
-            buildHouse();
-            camera.position.set(12, 8, 14);
-            break;
-        case 'blade':
-            buildBlade();
-            camera.position.set(12, 12, 16);
-            break;
-        case 'industrial':
-            buildIndustrial();
-            camera.position.set(18, 14, 20);
-            break;
-        case 'towers':
-        default:
-            buildTowers();
-            camera.position.set(15, 12, 20);
-            break;
+        case 'fridge':       buildFridge();     break;
+        case 'washer':       buildWasher();     break;
+        case 'microwave':    buildMicrowave();  break;
+        case 'vacuum':       buildVacuum();     break;
+        case 'blender':      buildBlender();    break;
+        case 'multicooker':  buildMulticooker();break;
+        default:             buildFridge();
     }
 
-    // === ORBIT CONTROLS (minimal) ===
+    // === ORBIT CONTROLS ===
     let isDragging = false;
-    let prevX = 0;
-    let prevY = 0;
-    let rotY = -0.3;
-    let rotX = 0.3;
-    let targetRotY = -0.3;
-    let targetRotX = 0.3;
-    let distance = 28;
-    let targetDistance = 28;
+    let prevX = 0, prevY = 0;
+    let rotY = -0.3, rotX = 0.3;
+    let targetRotY = -0.3, targetRotX = 0.3;
+    let distance = 15, targetDistance = 15;
 
     container.style.cursor = 'grab';
 
@@ -355,14 +338,12 @@
         container.style.cursor = 'grab';
     });
 
-    // Zoom
     container.addEventListener('wheel', (e) => {
         e.preventDefault();
         targetDistance += e.deltaY * 0.02;
-        targetDistance = Math.max(12, Math.min(50, targetDistance));
+        targetDistance = Math.max(8, Math.min(30, targetDistance));
     }, { passive: false });
 
-    // Touch
     let touchStartDist = 0;
     container.addEventListener('touchstart', (e) => {
         if (e.touches.length === 1) {
@@ -393,7 +374,7 @@
             );
             const delta = touchStartDist - dist;
             targetDistance += delta * 0.05;
-            targetDistance = Math.max(12, Math.min(50, targetDistance));
+            targetDistance = Math.max(8, Math.min(30, targetDistance));
             touchStartDist = dist;
         }
     }, { passive: false });
@@ -412,14 +393,20 @@
         rotX += (targetRotX - rotX) * 0.08;
         distance += (targetDistance - distance) * 0.08;
 
-        // Smooth orbit
         camera.position.x = Math.sin(rotY) * Math.cos(rotX) * distance;
-        camera.position.y = Math.sin(rotX) * distance + 5;
+        camera.position.y = Math.sin(rotX) * distance + 3;
         camera.position.z = Math.cos(rotY) * Math.cos(rotX) * distance;
 
-        camera.lookAt(0, modelType === 'blade' ? 8 : 4, 0);
+        let lookAtY = 1;
+        if (modelType === 'fridge') lookAtY = 2.5;
+        else if (modelType === 'washer') lookAtY = 1.2;
+        else if (modelType === 'vacuum') lookAtY = 1.2;
+        else if (modelType === 'blender') lookAtY = 1.1;
+        else if (modelType === 'multicooker') lookAtY = 1.0;
+        else if (modelType === 'microwave') lookAtY = 0.75;
 
-        // Gentle bob
+        camera.lookAt(0, lookAtY, 0);
+
         building.position.y = Math.sin(t * 0.5) * 0.1;
 
         renderer.render(scene, camera);
@@ -427,7 +414,6 @@
     }
     animate();
 
-    // === RESIZE ===
     window.addEventListener('resize', () => {
         if (!container.clientWidth) return;
         camera.aspect = container.clientWidth / container.clientHeight;

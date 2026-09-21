@@ -1,6 +1,6 @@
 /* ============================================
    CURSOR.JS — Кастомный курсор + частицы пыли
-   White Luxe Edition (без mix-blend-mode)
+   С фиксом: не пропадает над модалками и корзиной
    ============================================ */
 
 (function() {
@@ -10,22 +10,26 @@
     const canvas = document.getElementById('cursor-canvas');
     const isMobile = window.innerWidth <= 1000;
 
-    // Если мобильное — вообще не запускаем
     if (!cursor || isMobile) return;
 
-    // ===== STATE =====
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
     let curX = mouseX;
     let curY = mouseY;
     let isFirstMove = false;
 
-    // ===== HOVER TARGETS =====
     const hoverSelectors = [
         'a', 'button', 'input', 'textarea', 'select', 'label',
         '.btn', '.project-card', '.service', '.tab',
-        '.metric-card', '.interior', '.card', '.tag',
-        '.carousel-btn', '.carousel-dot'
+        '.metric-card', '.carousel-btn',
+        '.cart-btn', '.cart-item__qty button', '.cart-item__remove',
+        '.cart-panel__close', '.add-to-cart', '.quick-view-btn',
+        '.quick-modal__close', '.search-open-btn', '.search-result-item',
+        '.chat-widget__btn', '.chat-widget__head button', '.chat-widget__foot button',
+        '.faq-item__q', '.star-input svg', '.compare-bar__btn',
+        '.compare-bar__clear', '.compare-modal__close',
+        '.theme-toggle', '.scroll-top', '.sound-toggle',
+        '.breadcrumbs a', '.recently-viewed__item', '.recently-viewed__close'
     ];
     const hoverSelector = hoverSelectors.join(',');
 
@@ -33,26 +37,22 @@
         document.querySelectorAll(hoverSelector).forEach(el => {
             if (el.dataset.cursorBound) return;
             el.dataset.cursorBound = 'true';
-
             el.addEventListener('mouseenter', () => cursor.classList.add('is-hover'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('is-hover'));
         });
     }
     attachHoverListeners();
 
-    // Re-attach for dynamically added elements
     const observer = new MutationObserver(() => attachHoverListeners());
     observer.observe(document.body, { childList: true, subtree: true });
 
-    // ===== MOUSE EVENTS =====
+    // === MOUSE MOVE ===
     window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
 
-        // Показываем курсор после первого движения
         if (!isFirstMove) {
             isFirstMove = true;
-            // Мгновенно переносим в позицию мыши без анимации
             curX = mouseX;
             curY = mouseY;
             cursor.style.left = curX + 'px';
@@ -60,35 +60,46 @@
             cursor.classList.add('is-active');
             if (canvas) canvas.classList.add('is-active');
         }
+
+        // Восстанавливаем видимость, если она пропала
+        if (cursor.style.opacity === '0' || cursor.style.opacity === '') {
+            cursor.style.opacity = '1';
+        }
     });
 
-    // Click
     window.addEventListener('mousedown', () => cursor.classList.add('is-clicking'));
     window.addEventListener('mouseup', () => cursor.classList.remove('is-clicking'));
 
-    // Mouse leave document
-    document.addEventListener('mouseleave', () => {
-        cursor.style.opacity = '0';
+    // === ФИКС: скрываем только когда мышь РЕАЛЬНО ушла за пределы окна ===
+    document.addEventListener('mouseleave', (e) => {
+        const y = e.clientY;
+        const x = e.clientX;
+        if (y <= 0 || x <= 0 || x >= window.innerWidth || y >= window.innerHeight) {
+            cursor.style.opacity = '0';
+        }
     });
+
     document.addEventListener('mouseenter', () => {
         if (isFirstMove) cursor.style.opacity = '1';
     });
 
-    // ===== ANIMATION LOOP =====
+    // === ФИКС: если фокус уходит в iframe (яндекс-карта) — не скрываем ===
+    window.addEventListener('blur', () => {
+        // Не скрываем курсор при потере фокуса окна
+    });
+
+    // === ANIMATION LOOP ===
     function animateCursor() {
         curX += (mouseX - curX) * 0.22;
         curY += (mouseY - curY) * 0.22;
-
         cursor.style.left = curX + 'px';
         cursor.style.top = curY + 'px';
-
         requestAnimationFrame(animateCursor);
     }
     animateCursor();
 
-    // ===== DUST PARTICLES =====
+    // === DUST PARTICLES ===
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
     let w, h;
 
@@ -123,35 +134,25 @@
 
     function animateDust() {
         ctx.clearRect(0, 0, w, h);
-
-        // Speed influence
         const mouseSpeed = Math.hypot(mouseX - lastMouseX, mouseY - lastMouseY);
         lastMouseX = mouseX;
         lastMouseY = mouseY;
 
         dust.forEach(p => {
-            // Base movement
             p.x += p.vx + (mouseX - p.x) * 0.00005 * mouseSpeed;
             p.y += p.vy;
-
-            // Repel from cursor
             const dx = p.x - mouseX;
             const dy = p.y - mouseY;
             const dist = Math.hypot(dx, dy);
-
             if (dist < 150 && dist > 0) {
                 const force = (150 - dist) / 150;
                 p.x += (dx / dist) * force * 2.5;
                 p.y += (dy / dist) * force * 2.5;
             }
-
-            // Wrap
             if (p.x < -20) p.x = w + 20;
             if (p.x > w + 20) p.x = -20;
             if (p.y < -20) p.y = h + 20;
             if (p.y > h + 20) p.y = -20;
-
-            // Draw
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(199, 160, 111, ${p.opacity})`;
@@ -162,7 +163,6 @@
     }
     animateDust();
 
-    // ===== RESIZE HANDLER =====
     window.addEventListener('resize', () => {
         if (window.innerWidth <= 1000) {
             cursor.style.display = 'none';

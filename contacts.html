@@ -3,194 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Контакты — МОНОЛИТ</title>
+<title>Контакты — ТЕХНОПРЕСТИЖ</title>
+<meta name="description" content="Свяжитесь с ТЕХНОПРЕСТИЖ: телефон 8 (800) 123-45-67, email info@technoprestige.ru. Центральный офис в Санкт-Петербурге, ул. Технологическая, 10.">
+<link rel="canonical" href="https://technoprestige.ru/contacts.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api-maps.yandex.ru">
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#C7A06F">
+<meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%230A0A0A' width='100' height='100'/%3E%3Ctext x='50' y='72' font-family='Georgia,serif' font-size='72' font-weight='700' fill='%23C7A06F' text-anchor='middle'%3EТ%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/components.css">
 <link rel="stylesheet" href="css/animations.css">
 <link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/extras.css">
+<link rel="stylesheet" href="css/features.css">
+<link rel="stylesheet" href="css/fixes.css">
+<style>
+@media (max-width: 1000px) {
+    .contacts-grid { grid-template-columns: 1fr !important; gap: 40px !important; padding: 32px 16px !important; }
+}
+</style>
 </head>
 <body>
-
+<a href="#main-content" class="skip-link">Перейти к содержанию</a>
 <div class="cursor" id="cursor"><div class="cursor__dot"></div></div>
 <canvas class="cursor-canvas" id="cursor-canvas"></canvas>
-
 <header class="nav">
-    <a href="index.html" class="nav__logo">МОНОЛИТ</a>
+    <a href="index.html" class="nav__logo">ТЕХНОПРЕСТИЖ</a>
     <nav class="nav__menu">
         <a href="index.html" class="nav__link">Главная</a>
-        <a href="index.html#projects" class="nav__link">Проекты</a>
-        <a href="technologies.html" class="nav__link">Технологии</a>
-        <a href="about.html" class="nav__link">О нас</a>
+        <a href="catalog.html" class="nav__link">Каталог</a>
+        <a href="about.html" class="nav__link">О компании</a>
+        <a href="reviews-faq.html" class="nav__link">Отзывы и FAQ</a>
         <a href="contacts.html" class="nav__link is-active">Контакты</a>
     </nav>
-    <a href="#form" class="nav__cta">Обсудить проект</a>
+    <a href="#form" class="nav__cta">Связаться</a>
 </header>
-
-<main class="main">
-
-<!-- HERO -->
+<main class="main" id="main-content">
 <section class="contacts-hero" style="padding: 100px 60px 60px;">
     <p class="eyebrow" data-reveal>◆ КОНТАКТЫ</p>
-    <h1 class="hero__title" data-reveal style="font-size: clamp(56px, 8vw, 130px); line-height: 0.95; font-weight: 300; margin-bottom: 24px;">
-        Свяжитесь<br><em style="font-style: italic; font-weight: 600; color: var(--gold);">с нами</em>
-    </h1>
-    <p style="font-size: 17px; color: var(--text-2); max-width: 500px;" data-reveal>
-        Центральный офис в Санкт-Петербурге. Работаем по всей России.
-    </p>
+    <h1 class="hero__title" data-reveal style="font-size: clamp(56px, 8vw, 130px); line-height: 0.95; font-weight: 300; margin-bottom: 24px;">Свяжитесь<br><em style="font-style: italic; font-weight: 600; color: var(--gold);">с нами</em></h1>
+    <p style="font-size: 17px; color: var(--text-2); max-width: 500px;" data-reveal>Центральный офис в Санкт-Петербурге. Работаем по всей России.</p>
 </section>
-
-<!-- CONTACTS + FORM -->
 <section class="contacts-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding: 60px; border-top: 1px solid var(--border);">
     <div class="contacts-info">
-        <div class="contact-row" data-reveal style="padding: 26px 0; border-bottom: 1px solid var(--border);">
-            <span class="lbl" style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; color: var(--gold); margin-bottom: 10px;">ТЕЛЕФОН</span>
-            <a href="tel:88001234567" class="val" style="font-family: var(--font-display); font-size: 22px; color: var(--text); text-decoration: none; display: block;">8 (800) 123-45-67</a>
-        </div>
-        <div class="contact-row" data-reveal style="padding: 26px 0; border-bottom: 1px solid var(--border);">
-            <span class="lbl" style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; color: var(--gold); margin-bottom: 10px;">EMAIL</span>
-            <a href="mailto:info@monolit.ru" class="val" style="font-family: var(--font-display); font-size: 22px; color: var(--text); text-decoration: none; display: block;">info@monolit.ru</a>
-        </div>
-        <div class="contact-row" data-reveal style="padding: 26px 0; border-bottom: 1px solid var(--border);">
-            <span class="lbl" style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; color: var(--gold); margin-bottom: 10px;">АДРЕС</span>
-            <p class="val" style="font-family: var(--font-display); font-size: 22px; color: var(--text); line-height: 1.4;">Санкт-Петербург,<br>наб. реки Карповки, 5</p>
-        </div>
-        <div class="contact-row" data-reveal style="padding: 26px 0; border-bottom: 1px solid var(--border);">
-            <span class="lbl" style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; color: var(--gold); margin-bottom: 10px;">РЕЖИМ РАБОТЫ</span>
-            <p class="val" style="font-family: var(--font-display); font-size: 22px; color: var(--text); line-height: 1.4;">Пн–Пт: 9:00–20:00<br>Сб: 10:00–18:00</p>
-        </div>
-        <div class="contact-row" data-reveal style="padding: 26px 0;">
-            <span class="lbl" style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; color: var(--gold); margin-bottom: 10px;">РЕКВИЗИТЫ</span>
-            <p class="val" style="font-family: var(--font-display); font-size: 22px; color: var(--text); line-height: 1.4;">ООО «МОНОЛИТ»<br>ИНН 7801234567<br>ОГРН 1087800000001</p>
-        </div>
+        <div class="contact-row" data-reveal style="padding: 26px 0; border-bottom: 1px solid var(--border);"><span class="lbl" style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; color: var(--gold); margin-bottom: 10px;">ТЕЛЕФОН</span><a href="tel:88001234567" class="val" style="font-family: var(--font-display); font-size: 22px; color: var(--text); text-decoration: none; display: block;">8 (800) 123-45-67</a></div>
+        <div class="contact-row" data-reveal style="padding: 26px 0; border-bottom: 1px solid var(--border);"><span class="lbl" style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; color: var(--gold); margin-bottom: 10px;">EMAIL</span><a href="mailto:info@technoprestige.ru" class="val" style="font-family: var(--font-display); font-size: 22px; color: var(--text); text-decoration: none; display: block;">info@technoprestige.ru</a></div>
+        <div class="contact-row" data-reveal style="padding: 26px 0; border-bottom: 1px solid var(--border);"><span class="lbl" style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; color: var(--gold); margin-bottom: 10px;">АДРЕС</span><p class="val" style="font-family: var(--font-display); font-size: 22px; color: var(--text); line-height: 1.4;">Санкт-Петербург,<br>ул. Технологическая, 10</p></div>
+        <div class="contact-row" data-reveal style="padding: 26px 0; border-bottom: 1px solid var(--border);"><span class="lbl" style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; color: var(--gold); margin-bottom: 10px;">РЕЖИМ РАБОТЫ</span><p class="val" style="font-family: var(--font-display); font-size: 22px; color: var(--text); line-height: 1.4;">Пн–Пт: 9:00–20:00<br>Сб: 10:00–18:00</p></div>
+        <div class="contact-row" data-reveal style="padding: 26px 0;"><span class="lbl" style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; color: var(--gold); margin-bottom: 10px;">РЕКВИЗИТЫ</span><p class="val" style="font-family: var(--font-display); font-size: 22px; color: var(--text); line-height: 1.4;">ООО «ТЕХНОПРЕСТИЖ»<br>ИНН 7801234567<br>ОГРН 1127800000001</p></div>
     </div>
-
     <div class="contacts-form" id="form" style="position: relative;">
         <form id="contact-form" style="padding: 50px 45px; background: var(--bg-soft); border: 1px solid var(--border);">
             <h3 style="font-family: var(--font-display); font-size: 30px; font-weight: 400; margin-bottom: 30px; color: var(--text);">Оставить заявку</h3>
-
-            <div class="field" style="margin-bottom: 24px;">
-                <label style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Имя *</label>
-                <input type="text" name="name" required>
-            </div>
-
-            <div class="field" style="margin-bottom: 24px;">
-                <label style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Телефон *</label>
-                <input type="tel" name="phone" required>
-            </div>
-
-            <div class="field" style="margin-bottom: 24px;">
-                <label style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Email</label>
-                <input type="email" name="email">
-            </div>
-
-            <div class="field" style="margin-bottom: 24px;">
-                <label style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Услуга</label>
-                <select name="service">
-                    <option value="">Выберите услугу</option>
-                    <option>Генподряд</option>
-                    <option>BIM-проектирование</option>
-                    <option>Промышленность</option>
-                    <option>Ремонт квартир</option>
-                    <option>Кровля</option>
-                    <option>Отделка</option>
-                </select>
-            </div>
-
-            <div class="field" style="margin-bottom: 24px;">
-                <label style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Сообщение</label>
-                <textarea name="message" rows="3"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn--primary" style="width: 100%; justify-content: center;">
-                <span class="btn__text">Отправить</span>
-                <span class="arrow">→</span>
-            </button>
-
-            <p class="note" style="font-family: var(--font-mono); font-size: 10px; color: var(--text-3); margin-top: 20px; line-height: 1.6;">
-                Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных.
-            </p>
+            <div class="field" style="margin-bottom: 24px;"><label style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Имя *</label><input type="text" name="name" required></div>
+            <div class="field" style="margin-bottom: 24px;"><label style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Телефон *</label><input type="tel" name="phone" required></div>
+            <div class="field" style="margin-bottom: 24px;"><label style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Email</label><input type="email" name="email"></div>
+            <div class="field" style="margin-bottom: 24px;"><label style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Товар</label><select name="product"><option value="">Выберите товар</option><option>Холодильник</option><option>Стиральная машина</option><option>Микроволновка</option><option>Пылесос</option><option>Блендер</option><option>Мультиварка</option></select></div>
+            <div class="field" style="margin-bottom: 24px;"><label style="display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Сообщение</label><textarea name="message" rows="3"></textarea></div>
+            <button type="submit" class="btn btn--primary" style="width: 100%; justify-content: center;"><span class="btn__text">Отправить</span><span class="arrow">→</span></button>
+            <p class="note" style="font-family: var(--font-mono); font-size: 10px; color: var(--text-3); margin-top: 20px; line-height: 1.6;">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных.</p>
         </form>
-
-        <div class="form-success" id="form-success" style="position: absolute; top: 0; left: 0; right: 0; padding: 60px 45px; background: var(--bg-soft); border: 1px solid var(--gold); text-align: center; opacity: 0; visibility: hidden; transition: all 0.6s var(--ease); transform: translateY(20px);">
+        <div class="form-success" id="form-success" role="status" aria-live="polite" style="position: absolute; top: 0; left: 0; right: 0; padding: 60px 45px; background: var(--bg-soft); border: 1px solid var(--gold); text-align: center; opacity: 0; visibility: hidden; transition: all 0.6s var(--ease); transform: translateY(20px);">
             <div class="form-success__icon" style="width: 70px; height: 70px; border-radius: 50%; background: var(--gold); color: #fff; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 28px; font-weight: 700;">✓</div>
             <h3 style="font-family: var(--font-display); font-size: 30px; font-weight: 400; margin-bottom: 12px;">Заявка принята</h3>
             <p style="color: var(--text-2); margin-bottom: 20px;">Мы свяжемся с вами в течение 15 минут.</p>
-            <p style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-3);">
-                Возврат через <span id="success-timer" style="color: var(--gold); font-weight: 700;">8</span> сек
-            </p>
+            <p style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-3);">Возврат через <span id="success-timer" style="color: var(--gold); font-weight: 700;">8</span> сек</p>
         </div>
     </div>
 </section>
-
-<!-- MAP -->
 <section class="map-section" style="padding: 60px 0; border-top: 1px solid var(--border);">
-    <header class="section-head">
-        <p class="eyebrow" data-reveal>◆ НА КАРТЕ</p>
-        <h2 class="section-title" data-reveal>Наш офис<br><em>в Санкт-Петербурге</em></h2>
-    </header>
+    <header class="section-head"><p class="eyebrow" data-reveal>◆ НА КАРТЕ</p><h2 class="section-title" data-reveal>Наш офис<br><em>в Санкт-Петербурге</em></h2></header>
     <div class="map-wrap" id="yandex-map"></div>
 </section>
-
 </main>
 
 <footer class="footer">
-    <div class="footer__row">
-        <div class="footer__logo">МОНОЛИТ</div>
-        <nav class="footer__nav">
-            <a href="index.html">Главная</a>
-            <a href="technologies.html">Технологии</a>
-            <a href="about.html">О нас</a>
-            <a href="contacts.html">Контакты</a>
-        </nav>
-        <div class="footer__copy">© 2026. ИНН 7801234567</div>
+    <div class="footer__top">
+        <div class="footer__col footer__col--brand">
+            <div class="footer__logo">ТЕХНОПРЕСТИЖ</div>
+            <p class="footer__desc">Российский производитель бытовой техники с 2012 года. Собственный завод, 60+ видов продукции, гарантия 3 года.</p>
+        </div>
+        <div class="footer__col">
+            <h4 class="footer__title">Навигация</h4>
+            <nav class="footer__nav">
+                <a href="index.html">Главная</a>
+                <a href="catalog.html">Каталог</a>
+                <a href="about.html">О компании</a>
+                <a href="reviews-faq.html">Отзывы и FAQ</a>
+                <a href="contacts.html">Контакты</a>
+            </nav>
+        </div>
+        <div class="footer__col">
+            <h4 class="footer__title">Контакты</h4>
+            <div class="footer__contacts">
+                <a href="tel:88001234567">8 (800) 123-45-67</a>
+                <a href="mailto:info@technoprestige.ru">info@technoprestige.ru</a>
+                <p>Санкт-Петербург,<br>ул. Технологическая, 10</p>
+            </div>
+        </div>
+        <div class="footer__col">
+            <h4 class="footer__title">Реквизиты</h4>
+            <div class="footer__requisites">
+                <p>ООО «ТЕХНОПРЕСТИЖ»</p>
+                <p>ИНН 7801234567</p>
+                <p>ОГРН 1127800000001</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <div class="footer__copy">© 2026. ТЕХНОПРЕСТИЖ. Все права защищены.</div>
+        <div class="footer__policy">
+            <a href="#">Политика конфиденциальности</a>
+            <a href="#">Пользовательское соглашение</a>
+        </div>
     </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.0.42/lenis.min.js"></script>
+<script src="js/libs/gsap.min.js"></script>
+<script src="js/libs/lenis.min.js"></script>
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=demo" type="text/javascript"></script>
 <script src="js/data.js"></script>
 <script src="js/cursor.js"></script>
 <script src="js/form.js"></script>
 <script src="js/main.js"></script>
-
+<script src="js/extras.js"></script>
+<script src="js/features.js"></script>
 <script>
-// Yandex Map init
 (function() {
     function initMap() {
         if (typeof ymaps === 'undefined') return;
         const mapEl = document.getElementById('yandex-map');
         if (!mapEl) return;
-
         ymaps.ready(() => {
-            const map = new ymaps.Map('yandex-map', {
-                center: [59.9678, 30.3145],
-                zoom: 15,
-                controls: []
-            });
-
+            const map = new ymaps.Map('yandex-map', { center: [59.9678, 30.3145], zoom: 15, controls: [] });
             map.behaviors.disable(['scrollZoom']);
-
-            const placemark = new ymaps.Placemark([59.9678, 30.3145], {
-                balloonContentHeader: 'МОНОЛИТ',
-                balloonContentBody: 'Санкт-Петербург,<br>наб. реки Карповки, 5<br><br>Пн–Пт: 9:00–20:00',
-                hintContent: 'Офис МОНОЛИТ'
-            }, {
-                preset: 'islands#circleDotIcon',
-                iconColor: '#C7A06F'
-            });
-
+            const placemark = new ymaps.Placemark([59.9678, 30.3145], { balloonContentHeader: 'ТЕХНОПРЕСТИЖ', balloonContentBody: 'Санкт-Петербург,<br>ул. Технологическая, 10<br><br>Пн–Пт: 9:00–20:00', hintContent: 'Офис ТЕХНОПРЕСТИЖ' }, { preset: 'islands#circleDotIcon', iconColor: '#C7A06F' });
             map.geoObjects.add(placemark);
         });
     }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initMap);
-    } else {
-        initMap();
-    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initMap);
+    else initMap();
 })();
 </script>
+<script src="js/features.js"></script>
+<script src="js/chatbot.js"></script>
 </body>
 </html>

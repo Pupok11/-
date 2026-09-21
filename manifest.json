@@ -1,0 +1,28 @@
+{
+    "name": "ТЕХНОПРЕСТИЖ — Бытовая техника",
+    "short_name": "ТехноПрестиж",
+    "description": "Современная бытовая техника для вашего дома. Холодильники, стиральные машины, микроволновки от производителя.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "background_color": "#FFFFFF",
+    "theme_color": "#C7A06F",
+    "lang": "ru",
+    "dir": "ltr",
+    "categories": ["shopping", "business", "lifestyle"],
+    "icons": [
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect fill='%230A0A0A' width='512' height='512'/%3E%3Ctext x='256' y='370' font-family='Georgia,serif' font-size='360' font-weight='700' fill='%23C7A06F' text-anchor='middle'%3EТ%3C/text%3E%3C/svg%3E",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%230A0A0A' width='192' height='192'/%3E%3Ctext x='96' y='140' font-family='Georgia,serif' font-size='136' font-weight='700' fill='%23C7A06F' text-anchor='middle'%3EТ%3C/text%3E%3C/svg%3E",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}
