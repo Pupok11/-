@@ -229,6 +229,7 @@ function initConfetti() {
 function initAnchorLinks() {
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         if (link.dataset.anchorBound) return;
+        if (link.classList.contains('skip-link')) return;
         link.dataset.anchorBound = 'true';
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');

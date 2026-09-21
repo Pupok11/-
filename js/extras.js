@@ -623,7 +623,6 @@
     } else {
         init();
     }
-
     document.addEventListener('contentRendered', () => {
         initFavorites();
         initFavoritesIcon();
@@ -632,4 +631,29 @@
         initPriceCount();
         initBreadcrumbs();
     });
+
+    /* SKIP-LINK — переносит фокус на #main-content */
+    function initSkipLink() {
+        document.querySelectorAll('a.skip-link').forEach(function(link) {
+            if (link.dataset.skipBound === 'true') return;
+            link.dataset.skipBound = 'true';
+            link.addEventListener('click', function(e) {
+                var href = link.getAttribute('href');
+                if (!href || href.charAt(0) !== '#') return;
+                var target = document.querySelector(href);
+                if (!target) return;
+                e.preventDefault();
+                e.stopPropagation();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (target.getAttribute('tabindex') !== '-1') {
+                    target.setAttribute('tabindex', '-1');
+                }
+                target.focus({ preventScroll: true });
+                if (history.replaceState) {
+                    history.replaceState(null, '', href);
+                }
+            });
+        });
+    }
+    initSkipLink();
 })();

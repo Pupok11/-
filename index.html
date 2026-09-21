@@ -39,7 +39,7 @@
     </nav>
     <a href="contacts.html" class="nav__cta">Связаться</a>
 </header>
-<main class="main" id="main-content">
+<main class="main" id="main-content" tabindex="-1">
 <section class="hero">
     <div class="hero__left">
         <p class="eyebrow" data-reveal>◆ САНКТ-ПЕТЕРБУРГ ◆ С 2012 ГОДА</p>
@@ -152,5 +152,58 @@
 <script src="js/extras.js"></script>
 <script src="js/features.js"></script>
 <script src="js/chatbot.js"></script>
+
+<!-- ===== SKIP-LINK FIX: принудительно, игнорируя остальные скрипты ===== -->
+<style>
+.skip-link {
+    position: fixed !important;
+    top: -200px !important;
+    left: 20px !important;
+    background: #0A0A0A !important;
+    color: #fff !important;
+    padding: 14px 24px !important;
+    font-family: monospace !important;
+    font-size: 12px !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    z-index: 2147483647 !important;
+    text-decoration: none !important;
+    transition: top 0.3s ease !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+    top: 20px !important;
+    outline: 2px solid #C7A06F !important;
+    outline-offset: 2px !important;
+}
+</style>
+<script>
+(function() {
+    'use strict';
+    console.log('[skip-link-fix] инициализация');
+    document.addEventListener('click', function(e) {
+        var link = e.target && e.target.closest ? e.target.closest('a.skip-link') : null;
+        if (!link) return;
+        console.log('[skip-link-fix] перехвачен клик');
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        var target = document.getElementById('main-content');
+        if (!target) { console.warn('[skip-link-fix] #main-content не найден'); return; }
+        target.setAttribute('tabindex', '-1');
+        try {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } catch (err) {
+            target.scrollIntoView();
+        }
+        target.focus({ preventScroll: true });
+        console.log('[skip-link-fix] фокус переведён на', target.tagName);
+    }, true);
+})();
+</script>
+</body>
+</html>
 </body>
 </html>
